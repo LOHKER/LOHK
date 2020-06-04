@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
-import { Accounts } from 'meteor/accounts-base';
+import { Meteor } from 'meteor/meteor';
+
 
 class EmailPin extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class EmailPin extends React.Component {
     this.setState({ [name]: value });
   }
 
-  /** Handle Signup submission.
+  /** Handle pin submission.
    * Users should have been given a pin
    * Then redirect to the home page if entered correctly. */
   submit = () => {
@@ -31,6 +32,18 @@ class EmailPin extends React.Component {
 
   /** Display the signup form. Redirect to add page after successful registration and login. */
   render() {
+
+    console.log(Meteor.user().emails[0].address);
+
+    // Client: Asynchronously send an email.
+    Meteor.call(
+        'sendEmail',
+        'Meteor.user().emails[0].address',
+        'turing.lohk@gmail.com',
+        'Hello from Meteor!',
+        'This is a test of Email.send.',
+    );
+
     const { from } = this.props.location.state || { from: { pathname: '/dash' } };
     // if correct authentication, redirect to from: page instead of signup screen
     if (this.state.redirectToReferer) {
