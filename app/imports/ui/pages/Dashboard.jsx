@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Image } from 'semantic-ui-react';
 
 /** A simple static component to render some text for the landing page. */
-class Landing extends React.Component {
+class Dashboard extends React.Component {
   render() {
     return (
         <Grid verticalAlign='middle' textAlign='center' container>
@@ -12,8 +12,8 @@ class Landing extends React.Component {
           </Grid.Column>
 
           <Grid.Column width={8}>
-            <h1>This is the landing page.</h1>
-            <h1>Maybe we just have this redirect to the log-in page instead?</h1>
+            <h1>DASHBOARD GOES HERE</h1>
+            <h1>THIS IS BASCIALLY THE CENTRAL HOME PAGE</h1>
           </Grid.Column>
 
         </Grid>
@@ -21,4 +21,4 @@ class Landing extends React.Component {
   }
 }
 
-export default Landing;
+export default Dashboard;

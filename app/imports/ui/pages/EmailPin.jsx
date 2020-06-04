@@ -1,17 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 
-/**
- * Signup component is similar to signin component, but we create a new user instead.
- */
-class Signup extends React.Component {
-  /** Initialize state fields. */
+class EmailPin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '', redirectToReferer: false };
+    this.state = { pin: '', redirectToReferer: false };
   }
 
   /** Update the form controls each time the user interacts with them. */
@@ -19,7 +15,9 @@ class Signup extends React.Component {
     this.setState({ [name]: value });
   }
 
-  /** Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
+  /** Handle Signup submission.
+   * Users should have been given a pin
+   * Then redirect to the home page if entered correctly. */
   submit = () => {
     const { email, password } = this.state;
     Accounts.createUser({ email, username: email, password }, (err) => {
@@ -33,7 +31,7 @@ class Signup extends React.Component {
 
   /** Display the signup form. Redirect to add page after successful registration and login. */
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/add' } };
+    const { from } = this.props.location.state || { from: { pathname: '/dash' } };
     // if correct authentication, redirect to from: page instead of signup screen
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
@@ -44,40 +42,29 @@ class Signup extends React.Component {
         <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
           <Grid.Column>
             <Header as="h2" textAlign="center">
-              Register your account
+              You should have recieved an email with a pin.
+              Please enter that pin in the form below as exactly as it shows in the email.
             </Header>
             <Form onSubmit={this.submit}>
-              <Segment stacked>
+              <Segment>
                 <Form.Input
-                  label="Email"
-                  icon="user"
-                  iconPosition="left"
-                  name="email"
-                  type="email"
-                  placeholder="E-mail address"
-                  onChange={this.handleChange}
-                />
-                <Form.Input
-                  label="Password"
+                  label="Pin"
                   icon="lock"
                   iconPosition="left"
-                  name="password"
-                  placeholder="Password"
-                  type="password"
+                  name="pin"
+                  placeholder="Type Pin Here"
+                  type="pin"
                   onChange={this.handleChange}
                 />
                 <Form.Button content="Submit"/>
               </Segment>
             </Form>
-            <Message>
-              Already have an account? Login <Link to="/signin">here</Link>
-            </Message>
             {this.state.error === '' ? (
               ''
             ) : (
               <Message
                 error
-                header="Registration was not successful"
+                header="Pin was not correct"
                 content={this.state.error}
               />
             )}
@@ -89,8 +76,8 @@ class Signup extends React.Component {
 }
 
 /** Ensure that the React Router location object is available in case we need to redirect. */
-Signup.propTypes = {
+EmailPin.propTypes = {
   location: PropTypes.object,
 };
 
-export default Signup;
+export default EmailPin;
