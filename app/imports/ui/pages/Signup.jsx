@@ -23,8 +23,8 @@ class Signup extends React.Component {
   submit = () => {
     const { email, password, confirm } = this.state;
 
-    if(password !== confirm){
-      this.setState({ error: 'Passwords do not match'});
+    if (password !== confirm) {
+      this.setState({ error: 'Passwords do not match' });
       return;
     }
     Accounts.createUser({ email, username: email, password }, (err) => {
@@ -34,6 +34,25 @@ class Signup extends React.Component {
         this.setState({ error: '', redirectToReferer: true });
       }
     });
+  }
+
+  checkPassword(password, confirm) {
+    if (password !== confirm) {
+      this.setState({ error: 'Passwords do not match'});
+      return false;
+    }
+
+    const length = password.length();
+
+    if (length < 8) {
+      this.setState({ error: 'Password is too short. Minimum is 8 characters.' });
+      return false;
+    }
+    if (length > 32) {
+      this.setState({ error: 'Passwords is too long. Maximum is 32 characters' });
+      return false;
+    }
+    return true;
   }
 
   /** Display the signup form. Redirect to add page after successful registration and login. */
