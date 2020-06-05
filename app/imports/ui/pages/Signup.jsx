@@ -23,7 +23,7 @@ class Signup extends React.Component {
   submit = () => {
     const { email, password, confirm } = this.state;
 
-    if (!this.checkPassword(password, confirm)) {
+    if (!this.isValidPassword(password, confirm)) {
       return;
     }
     Accounts.createUser({ email, username: email, password }, (err) => {
@@ -35,7 +35,20 @@ class Signup extends React.Component {
     });
   }
 
-  checkPassword(password, confirm) {
+  /**
+   * Password Requirements:
+   - Must be 8 - 32 characters long
+   - Have at least one upper case character
+   - Have at least one lower case character
+   - Have at least one numeric character
+   - Have at least one special character
+   - New password correctly entered twice
+   - New password cannot be the same as the old password
+   * @param password
+   * @param confirm
+   * @returns {boolean}
+   */
+  isValidPassword(password, confirm) {
     if (password !== confirm) {
       this.setState({ error: 'Passwords do not match' });
       return false;
