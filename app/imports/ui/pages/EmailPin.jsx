@@ -37,10 +37,10 @@ class EmailPin extends React.Component {
   /** Display the signup form. Redirect to add page after successful registration and login. */
   render() {
 
+    /** Creates a randomly generated number of length 4 for the pin */
     const pin = Math.floor((Math.random() * 10000) + 1000);
 
     console.log(Meteor.user().emails[0].address);
-    console.log(pin);
 
     if (Meteor.isClient) {
       // Client: Asynchronously send an email.
@@ -48,7 +48,7 @@ class EmailPin extends React.Component {
           'sendEmail',
           Meteor.user().emails[0].address,
           'Login Verification pin',
-          'Your login should be this: 1111',
+          `Your pin to access the dashboard: ${pin}`,
       );
     }
 
@@ -93,7 +93,10 @@ class EmailPin extends React.Component {
               You should have recieved an email with a pin.
               Please enter that pin in the form below as exactly as it shows in the email.
             </Header>
-            <Form.Button content="Email"/>
+
+            {/* this button will allow the email to be sent */}
+            <Form.Button content="Send verification pin"/>
+
             <Form onSubmit={this.submit}>
               <Segment>
                 <Form.Input
