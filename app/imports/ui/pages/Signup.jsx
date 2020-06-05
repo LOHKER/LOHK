@@ -166,6 +166,16 @@ class Signup extends React.Component {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid>
+                  <p>
+                    Password Requirements: <br/>
+                    - Must be 8 - 32 characters long<br/>
+                    - Have at least one upper case character<br/>
+                    - Have at least one lower case character<br/>
+                    - Have at least one numeric character<br/>
+                    - Have at least one special character<br/>
+                    - New password correctly entered twice<br/>
+                    - New password cannot be the same as the old password<br/>
+                  </p>
                   <Form.Button content="Submit"/>
                 </Segment>
               </Form>
