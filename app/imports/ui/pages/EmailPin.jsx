@@ -1,8 +1,11 @@
+/* global check */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
+import { Email } from 'meteor/email';
+import { Accounts } from 'meteor/accounts-base';
 
 
 class EmailPin extends React.Component {
@@ -17,8 +20,9 @@ class EmailPin extends React.Component {
   }
 
   /** Handle pin submission.
-   * Users should have been given a pin
-   * Then redirect to the home page if entered correctly. */
+   * Users should have been given a randomly generated pin
+   * They are required to enter the pin into a form and submit
+   * They are redirected to the home page if entered correctly. */
   submit = () => {
     const { email, password } = this.state;
     Accounts.createUser({ email, username: email, password }, (err) => {
@@ -33,16 +37,47 @@ class EmailPin extends React.Component {
   /** Display the signup form. Redirect to add page after successful registration and login. */
   render() {
 
-    console.log(Meteor.user().emails[0].address);
+    const pin = Math.floor((Math.random() * 10000) + 1000);
 
-    // Client: Asynchronously send an email.
-    Meteor.call(
-        'sendEmail',
-        'Meteor.user().emails[0].address',
-        'turing.lohk@gmail.com',
-        'Hello from Meteor!',
-        'This is a test of Email.send.',
-    );
+    console.log(Meteor.user().emails[0].address);
+    console.log(pin);
+
+    if (Meteor.isClient) {
+      // Client: Asynchronously send an email.
+      Meteor.call(
+          'sendEmail',
+          Meteor.user().emails[0].address,
+          'Login Verification pin',
+          'Your login should be this: 1111',
+      );
+    }
+
+    /** this is supposed to send the email as the page loads */
+    if (Meteor.isServer) {
+      Meteor.startup(function () {
+        // eslint-disable-next-line max-len
+        process.env.MAIL_URL = 'smptp://postmaster%40sandbox853b85c74fca482894b2d938424d0aa0.mailgun.org:36366846925e69547349e97c9d40b6e1-a2b91229-7b8d67b5@smtp.mailgun.org:587';
+      });
+
+      // Server: Define a method that the client can call.
+      Meteor.methods({
+        sendEmail: function (to, subject, text) {
+          // Make sure that all arguments are strings.
+          check([to, subject, text], [String]);
+
+          // Let other method calls from the same client start running, without
+          // waiting for the email sending to complete.
+          this.unblock();
+
+          Email.send({
+            to: to,
+            from: 'turing@lohk.com',
+            subject: subject,
+            text: text,
+          });
+        },
+      });
+  }
 
     const { from } = this.props.location.state || { from: { pathname: '/dash' } };
     // if correct authentication, redirect to from: page instead of signup screen
@@ -58,6 +93,7 @@ class EmailPin extends React.Component {
               You should have recieved an email with a pin.
               Please enter that pin in the form below as exactly as it shows in the email.
             </Header>
+            <Form.Button content="Email"/>
             <Form onSubmit={this.submit}>
               <Segment>
                 <Form.Input
