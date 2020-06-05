@@ -23,8 +23,7 @@ class Signup extends React.Component {
   submit = () => {
     const { email, password, confirm } = this.state;
 
-    if (password !== confirm) {
-      this.setState({ error: 'Passwords do not match' });
+    if (!this.checkPassword(password, confirm)) {
       return;
     }
     Accounts.createUser({ email, username: email, password }, (err) => {
@@ -38,11 +37,11 @@ class Signup extends React.Component {
 
   checkPassword(password, confirm) {
     if (password !== confirm) {
-      this.setState({ error: 'Passwords do not match'});
+      this.setState({ error: 'Passwords do not match' });
       return false;
     }
 
-    const length = password.length();
+    const length = password.length;
 
     if (length < 8) {
       this.setState({ error: 'Password is too short. Minimum is 8 characters.' });
@@ -52,7 +51,55 @@ class Signup extends React.Component {
       this.setState({ error: 'Passwords is too long. Maximum is 32 characters' });
       return false;
     }
-    return true;
+
+    let hasSpecial = false;
+    let hasInvalid = false;
+    let hasNumeric = false;
+    let hasUpperCase = false;
+    let hasLowerCase = false;
+
+    for (let i = 0; i < password.length; i++) {
+      const code = password.charCodeAt(i);
+      if (code >= 97 && code <= 122) {
+        hasLowerCase = true;
+      } else if (code >= 65 && code <= 90) {
+        hasUpperCase = true;
+      } else if (code >= 48 && code <= 57) {
+        hasNumeric = true;
+      } else if (code >= 33 && code <= 126) {
+        hasSpecial = true;
+      } else {
+        hasInvalid = true;
+        break;
+      }
+    }
+
+    if (hasInvalid) {
+      this.setState({ error: 'Password contains an invalid character.' });
+      return false;
+    }
+
+
+    if (hasSpecial && hasUpperCase && hasLowerCase && hasNumeric && !hasInvalid) {
+      return true;
+    }
+
+    let err_msg = '';
+    if (!hasSpecial) {
+      err_msg = err_msg.concat('PW needs a special character.\n');
+    }
+    if (!hasUpperCase) {
+      err_msg = err_msg.concat('PW needs an upper case character.\n');
+    }
+    if (!hasLowerCase) {
+      err_msg = err_msg.concat('PW needs a lower case character.\n');
+    }
+    if (!hasNumeric) {
+      err_msg = err_msg.concat('PW needs a numeric character.\n');
+    }
+
+    this.setState({ error: err_msg });
+    return false;
   }
 
   /** Display the signup form. Redirect to add page after successful registration and login. */
