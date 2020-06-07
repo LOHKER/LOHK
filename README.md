@@ -11,18 +11,18 @@ LOHK has decided to use the base template provided by ICS 314 at UH Manoa. For d
 
 <b>Team Members and their Responsibilities:</b>
 
-- James Lau:
-Current Workings: Password security and requirements
-Future handlings: Linking database to the application and further back-end development
+- Corben Broennimann: Front-end Development
+  - Current Workings: Dashboard desgin creation 
+  - Future handlings: Front-end development of the application
+  
+- Jake Camarao: Back-end Development
+  - Current Workings: Pin/email confirmation system and Login lockout system
+  - Future handlings: information API and further back-end development
+  
+- Kyra Ikeda: Front-end Development
+  - Current Workings: Landing page and Logo design
+  - Future Handlings: Assistance of back-end and front-end design
 
-- Kyra Ikeda:
-Current Workings: Landing page and Logo design
-Future Handlings: Assistance of back-end and front-end design
-
-- Jake Camarao:
-Current Workings: Pin/email confirmation system and Login lockout system
-Future handlings: information API and further back-end development
-
-- Corben Broennimann: 
-Current Workings: Dashboard desgin creation 
-Future handlings: Front-end development of the application
+- James Lau: Back-end Development
+  - Current Workings: Password security and requirements
+  - Future handlings: Linking database to the application and further back-end development
