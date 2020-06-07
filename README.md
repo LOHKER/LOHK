@@ -1,24 +1,28 @@
-Uses the base template provided by ICS 314 at UH Manoa:
-For details, please see http://ics-software-engineering.github.io/meteor-application-template-react/
+LOHK has decided to use the base template provided by ICS 314 at UH Manoa. For details regarding the template, please click [here](http://ics-software-engineering.github.io/meteor-application-template-react/).
 
-LOHK's password set up  is functional with minimum requirements for passwords established and completed 
+<b>What is complete thus far:</b>
+- LOHK's password security is fully functional. There is a list of requirements that the password must meet prior to registration, and if they are not met, account creation is not available.
+- The basic page layouts of LOHK has been created and connected. Each page is accessible and ready for front-end development.
 
-A pin validation for LOHK's login is pening but in it's early stages
+<b>What is pending:</b>
 
-LOHK's email service is pending but in it's early stages
+- LOHK strives to create a dual authentication feature where post log-in, the user will be redirected to a page to input a pin that is sent to their email. The pin must match and if it does not, they can not access the dashboard to view their saved information.
+- LOHK is still bare-bones when it comes to its front-end aesthetic. There is a lot of development that needs to be done to give LOHK the characteristics to stand out by itself as an application. 
 
-LOHK's login lockout system is pending but in progress 
+<b>Team Members and their Responsibilities:</b>
 
-LOHK's landing page and Dashboard are pending but currently in their early stages
+- James Lau:
+Current Workings: Password security and requirements
+Future handlings: Linking database to the application and further back-end development
 
-LOHK's listing and storage capabilites are pending
+- Kyra Ikeda:
+Current Workings: Landing page and Logo design
+Future Handlings: Assistance of back-end and front-end design
 
-LOHK's API is pending
+- Jake Camarao:
+Current Workings: Pin/email confirmation system and Login lockout system
+Future handlings: information API and further back-end development
 
-James has finished work on the password requirements functionality and will continue to work on back-end support and programming for the LOHK application
-
-Kyra has begun work on the Landing Page and will be working on the front end aspects of the LOHK application
-
-Jake has been working on LOHK's email service, login blackout, and will be working on back-end development
-
-Corben has begun work on the dashboard and will be working LOHK's front-end development
+- Corben Broennimann: 
+Current Workings: Dashboard desgin creation 
+Future handlings: Front-end development of the application
