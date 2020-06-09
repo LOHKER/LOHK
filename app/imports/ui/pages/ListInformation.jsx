@@ -38,7 +38,7 @@ class ListInformation extends React.Component {
   }
 }
 
-/** Require an array of Stuff documents in the props. */
+/** Require an array of Information documents in the props. */
 ListInformation.propTypes = {
   informations: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,

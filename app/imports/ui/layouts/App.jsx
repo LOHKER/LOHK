@@ -11,6 +11,7 @@ import Dashboard from '../pages/Dashboard';
 import ListInformation from '../pages/ListInformation';
 import AddInformation from '../pages/AddInformation';
 import EditInformation from '../pages/EditInformation';
+import AdminPage from '../pages/AdminPage';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -33,8 +34,7 @@ class App extends React.Component {
               <ProtectedRoute path="/list" component={ListInformation}/>
               <ProtectedRoute path="/add" component={AddInformation}/>
               <ProtectedRoute path="/edit/:_id" component={EditInformation}/>
-              {/* ADD IN AN ADMIN PAGE TODO TODO TODO TODO TODO */}
-              {/* <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/> */}
+              <AdminProtectedRoute path="/admin" component={AdminPage}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>
