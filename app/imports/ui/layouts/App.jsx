@@ -9,9 +9,8 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import Dashboard from '../pages/Dashboard';
 import ListInformation from '../pages/ListInformation';
-import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddInformation from '../pages/AddInformation';
-import EditStuff from '../pages/EditStuff';
+import EditInformation from '../pages/EditInformation';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -33,8 +32,9 @@ class App extends React.Component {
               <Route path="/emailpin" component={EmailPin}/>
               <ProtectedRoute path="/list" component={ListInformation}/>
               <ProtectedRoute path="/add" component={AddInformation}/>
-              <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
-              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
+              <ProtectedRoute path="/edit/:_id" component={EditInformation}/>
+              {/* ADD IN AN ADMIN PAGE TODO TODO TODO TODO TODO */}
+              {/* <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/> */}
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>
