@@ -5,9 +5,13 @@
   ],
 
   "defaultData": [
-    { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },
-    { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
-    { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
-    { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+    { "username": "Bananaman69", "password": "iluvbananas222", "owner": "john@foo.com", "notes": "Venmo" },
+    { "username": "Probonomono25", "password": "passwordlol69", "owner": "john@foo.com", "notes": "school login" },
+    { "username": "Board25", "password": "yeetDOG420", "owner": "admin@foo.com", "notes": "craigslist lol" }
+  ],
+  "defaultCard": [
+    { "number": "4145-8923-3923-2823", "pin": "453", "expire": "04/20", "owner": "john@foo.com","notes": "Visa DEBIT"},
+    { "number": "6011-2012-5039-2032", "pin": "602", "expire": "12/22", "owner": "john@foo.com","notes": "Discover Credit Card"},
+    { "number": "6011-34023-3943-2343", "pin": "034", "expire": "08/21", "owner": "admin@foo.com","notes": "Discover Card to MAX out hehehe"}
   ]
 }

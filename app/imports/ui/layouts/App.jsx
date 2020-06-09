@@ -8,10 +8,11 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import Dashboard from '../pages/Dashboard';
-import ListStuff from '../pages/ListStuff';
-import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
-import EditStuff from '../pages/EditStuff';
+import ListInformation from '../pages/ListInformation';
+import AddInformation from '../pages/AddInformation';
+import AddCard from '../pages/AddCard';
+import EditInformation from '../pages/EditInformation';
+import EditCard from '../pages/EditCard';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -31,10 +32,13 @@ class App extends React.Component {
               <Route path="/signup" component={Signup}/>
               <Route path="/dash" component={Dashboard}/>
               <Route path="/emailpin" component={EmailPin}/>
-              <ProtectedRoute path="/list" component={ListStuff}/>
-              <ProtectedRoute path="/add" component={AddStuff}/>
-              <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
-              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
+              <ProtectedRoute path="/list" component={ListInformation}/>
+              <ProtectedRoute path="/add-account" component={AddInformation}/>
+              <ProtectedRoute path="/add-card" component={AddCard}/>
+              <ProtectedRoute path="/edit-accounts/:_id" component={EditInformation}/>
+              <ProtectedRoute path="/edit-card/:_id" component={EditCard}/>
+              {/* ADD IN AN ADMIN PAGE TODO TODO TODO TODO TODO */}
+              {/* <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/> */}
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>
