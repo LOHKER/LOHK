@@ -5,9 +5,8 @@
   ],
 
   "defaultData": [
-    { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },
-    { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
-    { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
-    { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+    { "username": "Bananaman69", "password": "iluvbananas222", "owner": "john@foo.com", "notes": "Venmo" },
+    { "username": "Probonomono25", "password": "passwordlol69", "owner": "john@foo.com", "notes": "school login" },
+    { "username": "Board25", "password": "yeetDOG420", "owner": "admin@foo.com", "notes": "craigslist lol" }
   ]
 }
