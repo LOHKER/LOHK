@@ -17,7 +17,7 @@ class AdminPage extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">Saved Information</Header>
+          <Header as="h2" textAlign="center">All Users Registered</Header>
           <Table celled>
             <Table.Header>
               <Table.Row>
@@ -28,7 +28,7 @@ class AdminPage extends React.Component {
             <Table.Body>
               {/* create a function to list all users */}
               {/* {this.props.stuffs.map((stuff) => <StuffItem key={stuff._id} stuff={stuff} />)} */}
-              {Meteor.props.users.map((user) => <UserItem key={user._id} user={user}/>)}
+              {this.props.users.map((user) => <UserItem key={user._id} user={user}/>)}
             </Table.Body>
           </Table>
         </Container>
@@ -47,7 +47,7 @@ export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Admin');
   return {
-    users: Meteor.users.find({}).fetch(),
+    users: Meteor.users.find(),
     ready: subscription.ready(),
   };
 })(AdminPage);
