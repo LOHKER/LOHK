@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@300&display=swap');
+
+h1 {
+  font-family: 'Spartan', 'Times New Roman', sans-serif !important;
+  font-size: 30px !important;
+}
+
+h2 {
+  font-family: 'Spartan', 'Times New Roman', sans-serif !important;
+}
+
+h3 {
+  font-family: 'Spartan', 'Times New Roman', sans-serif !important;
+}
+
+h4 {
+  font-family: 'Spartan', 'Times New Roman', sans-serif !important;
+}
+
+div {
+  font-family: 'Spartan', 'Times New Roman', sans-serif !important;
+}
+
+body {
+  background-color: #F5F0F6 !important;
+}

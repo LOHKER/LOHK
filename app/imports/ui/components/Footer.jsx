@@ -1,19 +1,30 @@
 import React from 'react';
+import { Grid, Header, Icon } from 'semantic-ui-react';
 
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 class Footer extends React.Component {
   render() {
-    const divStyle = { paddingTop: '15px' };
+    const divStyle = { paddingTop: '50px', paddingBottom: '30px' };
     return (
-        <footer>
-          <div style={divStyle} className="ui center aligned container">
-            <hr />
-              Department of Information and Computer Sciences <br />
-              University of Hawaii<br />
-              Honolulu, HI 96822 <br />
-            <a href="http://ics-software-engineering.github.io/meteor-application-template-react">Template Home Page</a>
-          </div>
-        </footer>
+        <Grid style={divStyle} stackable centered container>
+          <Grid.Row>
+            <a href={'https://github.com/jcamarao/LOHK'}>
+              <Icon size={'big'} name={'github'}/>
+            </a>
+          </Grid.Row>
+          <Grid.Row>
+            <Header as={'h4'}>
+              &copy; 2020 LOHK Inc. All rights reserved.
+            </Header>
+          </Grid.Row>
+          <Grid.Row>
+            <a href={'/#/about'}>About Us</a>
+            <p>&ensp;|&ensp;</p>
+            <a href={'/#/terms'}>Privacy Notice</a>
+            <p>&ensp;|&ensp;</p>
+            <a href={'/#/terms'}>Terms of Service</a>
+          </Grid.Row>
+        </Grid>
     );
   }
 }
