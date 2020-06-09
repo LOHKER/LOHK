@@ -4,7 +4,9 @@ import { Container, Table, Header, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Informations } from '../../api/information/Information';
+import { Cards } from '../../api/card/Card';
 import InformationItem from '../components/InformationItem';
+import CardItem from '../components/CardItem';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListInformation extends React.Component {
@@ -18,7 +20,7 @@ class ListInformation extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">Saved Information</Header>
+          <Header as="h2" textAlign="center">Saved Accounts</Header>
           <Table celled>
             <Table.Header>
               <Table.Row>
@@ -33,6 +35,23 @@ class ListInformation extends React.Component {
               {this.props.informations.map((information) => <InformationItem key={information._id} information={information} />)}
             </Table.Body>
           </Table>
+
+          <Header as="h2" textAlign="center">Saved Cards</Header>
+          <Table celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Card Number</Table.HeaderCell>
+                <Table.HeaderCell>Security Pin</Table.HeaderCell>
+                <Table.HeaderCell>Expiration Date</Table.HeaderCell>
+                <Table.HeaderCell>Notes</Table.HeaderCell>
+                <Table.HeaderCell>Edit</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {/* eslint-disable-next-line max-len */}
+              {this.props.cards.map((card) => <CardItem key={card._id} card={card} />)}
+            </Table.Body>
+          </Table>
         </Container>
     );
   }
@@ -41,6 +60,7 @@ class ListInformation extends React.Component {
 /** Require an array of Stuff documents in the props. */
 ListInformation.propTypes = {
   informations: PropTypes.array.isRequired,
+  cards: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -48,8 +68,10 @@ ListInformation.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Information');
+  const subscription2 = Meteor.subscribe('Card');
   return {
     informations: Informations.find({}).fetch(),
-    ready: subscription.ready(),
+    cards: Cards.find({}).fetch(),
+    ready: subscription.ready() && subscription2.ready(),
   };
 })(ListInformation);
