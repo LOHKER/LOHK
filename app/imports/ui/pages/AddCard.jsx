@@ -5,23 +5,24 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import SimpleSchema from 'simpl-schema';
-import { Informations } from '../../api/information/Information';
+import { Cards } from '../../api/card/Card';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
-  username: String,
-  password: String,
+  number: String,
+  pin: String,
+  expire: String,
   notes: String,
 });
 
 /** Renders the Page for adding a document. */
-class AddInformation extends React.Component {
+class AddCard extends React.Component {
 
   /** On submit, insert the data. */
   submit(data, formRef) {
-    const { username, password, notes } = data;
+    const { number, pin, expire, notes } = data;
     const owner = Meteor.user().username;
-    Informations.insert({ username, password, notes, owner },
+    Cards.insert({ number, pin, expire, notes, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -39,11 +40,12 @@ class AddInformation extends React.Component {
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">New Account</Header>
+            <Header as="h2" textAlign="center">New Card</Header>
             <AutoForm ref={ref => { fRef = ref; }} schema={formSchema} onSubmit={data => this.submit(data, fRef)} >
               <Segment>
-                <TextField name='username'/>
-                <TextField name='password'/>
+                <TextField name='number'/>
+                <TextField name='pin'/>
+                <TextField name='expire'/>
                 <TextField name='notes'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
@@ -55,4 +57,4 @@ class AddInformation extends React.Component {
   }
 }
 
-export default AddInformation;
+export default AddCard;
