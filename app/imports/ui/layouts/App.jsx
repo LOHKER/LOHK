@@ -19,6 +19,7 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import EmailPin from '../pages/EmailPin';
+import RemoveUser from '../pages/RemoveUser';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -37,12 +38,11 @@ class App extends React.Component {
               <ProtectedRoute path="/add" component={AddInformation}/>
               <ProtectedRoute path="/edit/:_id" component={EditInformation}/>
               <AdminProtectedRoute path="/admin" component={AdminPage}/>
+              <AdminProtectedRoute path="/admin-remove" component={RemoveUser}/>
               <ProtectedRoute path="/add-account" component={AddInformation}/>
               <ProtectedRoute path="/add-card" component={AddCard}/>
               <ProtectedRoute path="/edit-accounts/:_id" component={EditInformation}/>
               <ProtectedRoute path="/edit-card/:_id" component={EditCard}/>
-              {/* ADD IN AN ADMIN PAGE TODO TODO TODO TODO TODO */}
-              {/* <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/> */}
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>

@@ -10,7 +10,7 @@ class UserItem extends React.Component {
         <Table.Row>
           <Table.Cell>{this.props.user.username}</Table.Cell>
           <Table.Cell>
-            <Link to={`/edit/${this.props.user._id}`}>Remove</Link>
+            <Link to={`/admin-remove/${this.props.user._id}`}>Remove</Link>
           </Table.Cell>
         </Table.Row>
     );
