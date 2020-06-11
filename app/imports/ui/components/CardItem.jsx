@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react';
+import { Card, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -7,15 +7,26 @@ import { withRouter, Link } from 'react-router-dom';
 class CardItem extends React.Component {
   render() {
     return (
-        <Table.Row>
-          <Table.Cell>{this.props.card.number}</Table.Cell>
-          <Table.Cell>{this.props.card.pin}</Table.Cell>
-          <Table.Cell>{this.props.card.expire}</Table.Cell>
-          <Table.Cell>{this.props.card.notes}</Table.Cell>
-          <Table.Cell>
+        <Card>
+          <Card.Description>
+            <Icon size={'large'} name={'credit card outline'}/>
+          </Card.Description>
+          <Card.Content>
+            Card #: {this.props.card.number}
+          </Card.Content>
+          <Card.Content>
+            Security Code: {this.props.card.pin}
+          </Card.Content>
+          <Card.Content>
+            Exp. Date: {this.props.card.expire}
+          </Card.Content>
+          <Card.Content>
+            Notes: {this.props.card.notes}
+          </Card.Content>
+          <Card.Meta>
             <Link to={`/edit-card/${this.props.card._id}`}>Edit</Link>
-          </Table.Cell>
-        </Table.Row>
+          </Card.Meta>
+        </Card>
     );
   }
 }

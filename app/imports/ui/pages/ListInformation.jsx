@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Table, Header, Loader } from 'semantic-ui-react';
+import { Container, Table, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Informations } from '../../api/information/Information';
@@ -52,6 +52,10 @@ class ListInformation extends React.Component {
               {this.props.cards.map((card) => <CardItem key={card._id} card={card} />)}
             </Table.Body>
           </Table>
+
+          <Card.Group>
+            {this.props.cards.map((card) => <CardItem key={card._id} card={card} />)}
+          </Card.Group>
         </Container>
     );
   }
