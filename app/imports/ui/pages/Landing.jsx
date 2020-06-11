@@ -22,7 +22,7 @@ class Landing extends React.Component {
                 <Button.Content style={{ color: 'white' }} visible>
                   GET STARTED
                 </Button.Content>
-                <Button.Content style={{ color: 'white' }} inverted hidden>
+                <Button.Content style={{ color: 'white' }} hidden>
                   SIGN UP
                 </Button.Content>
               </Button>
