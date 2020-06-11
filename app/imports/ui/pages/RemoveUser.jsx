@@ -21,13 +21,13 @@ class RemoveUser extends React.Component {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   renderPage() {
 
-    console.log(this.props.users.username);
-    console.log(this.props.users._id);
+    console.log(Meteor.users.username);
+    console.log(this.props.user._id);
 
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">Are you sure you want to remove {this.props.users.username}?</Header>
+            <Header as="h2" textAlign="center">Are you sure you want to remove {this.props.user.username}?</Header>
             <Button
             id='delete'
             animated color = 'black'
@@ -47,7 +47,7 @@ class RemoveUser extends React.Component {
 RemoveUser.propTypes = {
   doc: PropTypes.object,
   model: PropTypes.object,
-  users: PropTypes.array.isRequired,
+  user: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -56,7 +56,7 @@ export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Admin');
   return {
-    users: Meteor.users.find().fetch(),
+    user: Meteor.users.find().fetch(),
     ready: subscription.ready(),
   };
 })(RemoveUser);
