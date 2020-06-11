@@ -10,6 +10,7 @@ class RemoveUser extends React.Component {
 
   handleClick() {
     Meteor.users.remove(Meteor.users._id);
+    console.log('function is happening');
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -20,14 +21,13 @@ class RemoveUser extends React.Component {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   renderPage() {
 
-    if (Meteor.isServer) {
-      console.log('wat');
-    }
+    console.log(this.props.users.username);
+    console.log(this.props.users._id);
 
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">Are you sure you want to remove {Meteor.users.username}?</Header>
+            <Header as="h2" textAlign="center">Are you sure you want to remove {this.props.users.username}?</Header>
             <Button
             id='delete'
             animated color = 'black'
@@ -47,6 +47,7 @@ class RemoveUser extends React.Component {
 RemoveUser.propTypes = {
   doc: PropTypes.object,
   model: PropTypes.object,
+  users: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -55,7 +56,7 @@ export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Admin');
   return {
-    users: Meteor.users.find(),
+    users: Meteor.users.find().fetch(),
     ready: subscription.ready(),
   };
 })(RemoveUser);

@@ -47,7 +47,7 @@ export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Admin');
   return {
-    users: Meteor.users.find(),
+    users: Meteor.users.find().fetch(),
     ready: subscription.ready(),
   };
 })(AdminPage);
