@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-// import { Roles } from 'meteor/alanning:roles';
+import { Roles } from 'meteor/alanning:roles';
 import { Informations } from '../../api/information/Information';
 import { Cards } from '../../api/card/Card';
 
@@ -8,6 +8,15 @@ Meteor.publish('Information', function publish() {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
     return Informations.find({ owner: username });
+  }
+  return this.ready();
+});
+
+/** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
+Meteor.publish('Admin', function publish() {
+  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
+    const username = Meteor.users.find();
+    return username;
   }
   return this.ready();
 });
