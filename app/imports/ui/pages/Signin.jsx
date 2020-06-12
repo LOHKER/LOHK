@@ -23,7 +23,6 @@ export default class Signin extends React.Component {
 
   handleChange_pin = (e, { name, value }) => {
     this.setState({ [name]: value });
-    console.log(`pin input = ${this.state.pin_input} | real pin = ${this.state.pin}`);
   }
 
   /** Handle Signin submission using Meteor's account mechanism. */
@@ -46,13 +45,6 @@ export default class Signin extends React.Component {
       } else {
         const random_pin = Math.floor(Math.random() * 10000);
         this.setState({ error: '', redirectToPin: true, pin: random_pin});
-        // Meteor.call(
-        //     'sendEmail',
-        //     email,
-        //     'turing.lohk@gmail.com',
-        //     'LOHK Pin Verification',
-        //     `${this.state.pin}`,
-        // );
         Meteor.logout();
       }
     });
