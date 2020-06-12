@@ -17,11 +17,7 @@ export default class Signin extends React.Component {
   }
 
   /** Update the form controls each time the user interacts with them. */
-  handleChange_login = (e, { name, value }) => {
-    this.setState({ [name]: value });
-  }
-
-  handleChange_pin = (e, { name, value }) => {
+  handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
   }
 
@@ -44,7 +40,7 @@ export default class Signin extends React.Component {
         this.setState({ error: err.reason });
       } else {
         const random_pin = Math.floor(Math.random() * 10000);
-        this.setState({ error: '', redirectToPin: true, pin: random_pin});
+        this.setState({ error: '', redirectToPin: true, pin: random_pin });
         Meteor.logout();
       }
     });
@@ -77,7 +73,7 @@ export default class Signin extends React.Component {
                       name="email"
                       type="email"
                       placeholder="E-mail address"
-                      onChange={this.handleChange_login}
+                      onChange={this.handleChange}
                   />
                   <Form.Input
                       label="Password"
@@ -86,7 +82,7 @@ export default class Signin extends React.Component {
                       name="password"
                       placeholder="Password"
                       type="password"
-                      onChange={this.handleChange_login}
+                      onChange={this.handleChange}
                   />
                   <Form.Button content="Submit"/>
                 </Segment>
@@ -117,8 +113,8 @@ export default class Signin extends React.Component {
                 Please enter that pin in the form below as exactly as it shows in the email.
               </Header>
 
-              {/* this button will allow the email to be sent */}
-              <Form.Button content="Send verification pin" /*onSubmit={this.sendEmail}*//>
+              {/* this button will allow the email to be sent - TO BE IMPLEMENTED */}
+              {/* <Form.Button content="Send verification pin" onSubmit={this.sendEmail}/> */}
 
               <Form onSubmit={this.submit_pin}>
                 <Segment>
@@ -129,7 +125,7 @@ export default class Signin extends React.Component {
                       name="pin_input"
                       placeholder="Type Pin Here"
                       type="pin"
-                      onChange={this.handleChange_pin}
+                      onChange={this.handleChange}
                   />
                   <Form.Button content="Submit"/>
                 </Segment>
@@ -163,6 +159,7 @@ export default class Signin extends React.Component {
 
       const service_id = 'default_service';
       const template_id = 'template_Z888wQ4B';
+      // eslint-disable-next-line no-undef
       emailjs.send(service_id, template_id, template_params);
 
       displayPage = pinPage;
@@ -178,4 +175,3 @@ export default class Signin extends React.Component {
 Signin.propTypes = {
   location: PropTypes.object,
 };
-
