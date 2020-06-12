@@ -12,8 +12,12 @@
     { "username": "Board25", "password": "yeetDOG420", "owner": "kyraikeda@gmail.com", "notes": "craigslist lol" }
   ],
   "defaultCard": [
-    { "number": "4145-8923-3923-2823", "pin": "453", "expire": "04/20", "owner": "john@foo.com","notes": "Visa DEBIT"},
-    { "number": "6011-2012-5039-2032", "pin": "602", "expire": "12/22", "owner": "john@foo.com","notes": "Discover Credit Card"},
-    { "number": "6011-34023-3943-2343", "pin": "034", "expire": "08/21", "owner": "admin@foo.com","notes": "Discover Card to MAX out hehehe"}
+    { "number": "4145-8923-3923-2823", "pin": "453", "expire": "04/20", "owner": "jake.camarao@gmail.com","notes": "Visa DEBIT"},
+    { "number": "4145-8923-3923-2823", "pin": "453", "expire": "04/20", "owner": "kyraikeda@gmail.com","notes": "Visa DEBIT"},
+    { "number": "4145-8923-3923-3023", "pin": "453", "expire": "04/20", "owner": "jklau88@hawaii.edu","notes": "Visa DEBIT"},
+    { "number": "4145-8923-3923-2823", "pin": "453", "expire": "04/20", "owner": "jklau88@hawaii.edu","notes": "Visa DEBIT"},
+    { "number": "4145-8923-3923-2823", "pin": "453", "expire": "04/20", "owner": "jake.camarao@gmail.com","notes": "Visa DEBIT"},
+    { "number": "6011-2012-5039-2032", "pin": "602", "expire": "12/22", "owner": "corben@hawaii.edu","notes": "Discover Credit Card"},
+    { "number": "6011-34023-3943-2343", "pin": "034", "expire": "08/21", "owner": "jake.camarao@gmail.com","notes": "Discover Card to MAX out hehehe"}
   ]
 }
