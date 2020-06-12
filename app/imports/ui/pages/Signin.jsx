@@ -17,20 +17,30 @@ export default class Signin extends React.Component {
   }
 
   /** Update the form controls each time the user interacts with them. */
-  handleChange = (e, { name, value }) => {
+  handleChange_login = (e, { name, value }) => {
     this.setState({ [name]: value });
   }
 
+  handleChange_pin = (e, { name, value }) => {
+    this.setState({ [name]: value });
+  }
+
+
   /** Handle Signin submission using Meteor's account mechanism. */
   submit_pin = () => {
-    const { email, password } = this.state;
-    Meteor.loginWithPassword(email, password, (err) => {
-      if (err) {
-        this.setState({ error: err.reason });
-      } else {
-        this.setState({ error: '', redirectToRefer: true });
-      }
-    });
+    const { pin_input, pin } = this.state;
+    if (pin_input === pin) {
+      const { email, password } = this.state;
+      Meteor.loginWithPassword(email, password, (err) => {
+        if (err) {
+          this.setState({ error: err.reason });
+        } else {
+          this.setState({ error: '', redirectToRefer: true });
+        }
+      });
+    } else {
+      this.setState({ error: 'Incorrect Pin' });
+    }
   }
 
   submit_login = () => {
@@ -39,13 +49,23 @@ export default class Signin extends React.Component {
       if (err) {
         this.setState({ error: err.reason });
       } else {
-        const random_pin = Math.floor(Math.random() * 10000);
+        const random_pin = (`${Math.random()}`).substring(2, 7);
         this.setState({ error: '', redirectToPin: true, pin: random_pin });
         Meteor.logout();
+
+        const template_params = {
+          to: this.state.email,
+          pin: this.state.pin,
+        };
+
+        const service_id = 'default_service';
+        const template_id = 'template_Z888wQ4B';
+        // eslint-disable-next-line no-undef
+        // emailjs.send(service_id, template_id, template_params);
+        console.log(`pin = ${this.state.pin}`);
       }
     });
   }
-
 
   /** Render the signin form. */
   render() {
@@ -73,7 +93,7 @@ export default class Signin extends React.Component {
                       name="email"
                       type="email"
                       placeholder="E-mail address"
-                      onChange={this.handleChange}
+                      onChange={this.handleChange_login}
                   />
                   <Form.Input
                       label="Password"
@@ -82,7 +102,7 @@ export default class Signin extends React.Component {
                       name="password"
                       placeholder="Password"
                       type="password"
-                      onChange={this.handleChange}
+                      onChange={this.handleChange_login}
                   />
                   <Form.Button content="Submit"/>
                 </Segment>
@@ -125,7 +145,7 @@ export default class Signin extends React.Component {
                       name="pin_input"
                       placeholder="Type Pin Here"
                       type="pin"
-                      onChange={this.handleChange}
+                      onChange={this.handleChange_pin}
                   />
                   <Form.Button content="Submit"/>
                 </Segment>
@@ -151,17 +171,6 @@ export default class Signin extends React.Component {
     }
 
     if (this.state.redirectToPin) {
-
-      const template_params = {
-        to: this.state.email,
-        pin: this.state.pin,
-      };
-
-      const service_id = 'default_service';
-      const template_id = 'template_Z888wQ4B';
-      // eslint-disable-next-line no-undef
-      emailjs.send(service_id, template_id, template_params);
-
       displayPage = pinPage;
     } else {
       displayPage = loginPage;
