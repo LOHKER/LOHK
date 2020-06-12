@@ -1,8 +1,31 @@
 import { Meteor } from 'meteor/meteor';
+import { Email } from 'meteor/email';
 import { Informations } from '../../api/information/Information.js';
 import { Cards } from '../../api/card/Card.js';
 
 /* eslint-disable no-console */
+
+Meteor.methods({
+  sendEmail(to, from, subject, text) {
+    console.log('sendEmail ran');
+    // Make sure that all arguments are strings.
+    check([to, from, subject, text], [String]);
+
+    // Let other method calls from the same client start running, without
+    // waiting for the email sending to complete.
+    this.unblock();
+
+    // Email.send({ to, from, subject, text });
+    const template_params = {
+      to: to,
+      pin: text,
+    };
+
+    const service_id = 'default_service';
+    const template_id = 'template_Z888wQ4B';
+    emailjs.send(service_id, template_id, template_params);
+  },
+});
 
 /**
  * Related to INFORMATION API

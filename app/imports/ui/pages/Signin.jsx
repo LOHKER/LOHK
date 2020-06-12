@@ -45,7 +45,14 @@ export default class Signin extends React.Component {
         this.setState({ error: err.reason });
       } else {
         const random_pin = Math.floor(Math.random() * 10000);
-        this.setState({ error: '', redirectToPin: true , pin: random_pin});
+        this.setState({ error: '', redirectToPin: true, pin: random_pin});
+        // Meteor.call(
+        //     'sendEmail',
+        //     email,
+        //     'turing.lohk@gmail.com',
+        //     'LOHK Pin Verification',
+        //     `${this.state.pin}`,
+        // );
         Meteor.logout();
       }
     });
@@ -156,6 +163,16 @@ export default class Signin extends React.Component {
     }
 
     if (this.state.redirectToPin) {
+
+      const template_params = {
+        to: this.state.email,
+        pin: this.state.pin,
+      };
+
+      const service_id = 'default_service';
+      const template_id = 'template_Z888wQ4B';
+      emailjs.send(service_id, template_id, template_params);
+
       displayPage = pinPage;
     } else {
       displayPage = loginPage;
