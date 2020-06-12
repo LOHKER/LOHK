@@ -53,6 +53,8 @@ export default class Signin extends React.Component {
         this.setState({ error: '', redirectToPin: true, pin: random_pin });
         Meteor.logout();
 
+        e.target.reset();
+
         const template_params = {
           to: this.state.email,
           pin: this.state.pin,
@@ -60,9 +62,13 @@ export default class Signin extends React.Component {
 
         const service_id = 'default_service';
         const template_id = 'template_Z888wQ4B';
-        // eslint-disable-next-line no-undef
-        // emailjs.send(service_id, template_id, template_params);
-        console.log(`pin = ${this.state.pin}`);
+        const sendEmail = false;
+        if (sendEmail) {
+          // eslint-disable-next-line no-undef
+          emailjs.send(service_id, template_id, template_params);
+        } else {
+          console.log(`pin = ${this.state.pin}`);
+        }
       }
     });
   }
@@ -132,10 +138,8 @@ export default class Signin extends React.Component {
                 You should have recieved an email with a pin.
                 Please enter that pin in the form below as exactly as it shows in the email.
               </Header>
-
               {/* this button will allow the email to be sent - TO BE IMPLEMENTED */}
               {/* <Form.Button content="Send verification pin" onSubmit={this.sendEmail}/> */}
-
               <Form onSubmit={this.submit_pin}>
                 <Segment>
                   <Form.Input
@@ -145,6 +149,7 @@ export default class Signin extends React.Component {
                       name="pin_input"
                       placeholder="Type Pin Here"
                       type="pin"
+                      value = {this.state.pin_input}
                       onChange={this.handleChange_pin}
                   />
                   <Form.Button content="Submit"/>
@@ -164,19 +169,14 @@ export default class Signin extends React.Component {
         </Container>
     );
 
-    let displayPage;
-
     if (this.state.redirectToRefer) {
       return <Redirect to={from}/>;
     }
 
     if (this.state.redirectToPin) {
-      displayPage = pinPage;
-    } else {
-      displayPage = loginPage;
+      return pinPage;
     }
-
-    return displayPage;
+    return loginPage;
   }
 }
 
