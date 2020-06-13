@@ -25,10 +25,3 @@ if (Meteor.users.find().count() === 0) {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
   }
 }
-
-Meteor.users.allow({
-  remove: function () {
-    return true;
-  },
-
-});

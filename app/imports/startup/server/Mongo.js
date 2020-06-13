@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Email } from 'meteor/email';
 import { Informations } from '../../api/information/Information.js';
 import { Cards } from '../../api/card/Card.js';
 
