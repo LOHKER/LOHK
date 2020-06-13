@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Icon, Popup, Grid, Image, Card } from 'semantic-ui-react';
+import { Button, Icon, Popup, Grid, Image, Card, Segment, Sidebar, Menu, Header } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -11,80 +11,120 @@ import CardItem from '../components/CardItem';
 
 /** A simple static component to render some text for the landing page. */
 class Dashboard extends React.Component {
+  state = {
+    displayInfo: false,
+  }
+
+  state = {
+    displayCard: false,
+  }
+
+  displaysInfo = () => {
+    this.setState({
+      displayInfo: !this.state.displayInfo,
+    });
+    if (this.state.displayCard) {
+      this.setState({
+        displayCard: !this.state.displayCard,
+      });
+    }
+  }
+
+  displaysCard = () => {
+    this.setState({
+      displayCard: !this.state.displayCard,
+    });
+    if (this.state.displayInfo) {
+      this.setState({
+        displayInfo: !this.state.displayInfo,
+      });
+    }
+  }
+
   render() {
     const divStyle = { paddingTop: '20px', paddingBottom: '300px' };
+    let page = <Grid.Column verticleAlign='middle' width={10} style={ divStyle } textAlign= 'center'>
+      <Image centered style={{ width: '130px', marginBottom: '30px', marginTop: '30px' }} src="/images/LOHK-white.png"/>
+      <h1>
+        Welcome to LOHK
+      </h1>
+    </Grid.Column>;
+    if (this.state.displayInfo) {
+      page = (
+          <Grid.Column inverted width={12}>
+            <h1>
+              Accounts
+            </h1>
+            <Card.Group style={ divStyle }>
+              {this.props.informations.map((information) => <InformationItem key={information._id} information={information} />)}
+            </Card.Group>
+          </Grid.Column>
+      );
+    }
+    if (this.state.displayCard) {
+      page = (
+          <Grid.Column inverted width={12}>
+            <h1>
+              Credit Cards
+            </h1>
+            <Card.Group style={ divStyle }>
+              { this.props.cards.map((card) => <CardItem key={card._id} card={card}/>) }
+            </Card.Group>
+          </Grid.Column>
+      );
+    }
     return (
         <div style={{ backgroundColor: '#2A427A' }}>
-          <Grid>
-            <Grid.Column centered width={3} style={{ backgroundColor: '#385F71' }}>
-              <Image centered style={{ width: '60px' }} src="/images/LOHK-white.png"/>
-              {/** Will cause the page to display the account's Account info (not functional) */}
-              <Button inverted size={'large'} style={{ backgroundColor: '#D7B377',
-                marginTop: '30px', marginLeft: '60px' }}>
-                ACCOUNTS
-              </Button>
-              {/** Will cause the page to display the account's Credit Card info (not functional) */}
-              <Button inverted size={'large'} style={{ backgroundColor: '#D7B377',
-                marginTop: '30px', marginLeft: '50px', marginBottom: '30px' }}>
-                CREDIT CARDS
-              </Button>
-              {/** The Add info button, creates popup with button options when clicked */}
-              <Popup on='click' trigger={<Button inverted animated='fade' size={'medium'}
-                                                 style={{ backgroundColor: '#D7B377', marginBottom: '30px', marginLeft: '60px' }}>
-                <Button.Content style={{ color: 'white' }} visible>
-                  <Icon name={'plus circle'}></Icon> ADD INFO
-                </Button.Content>
-                {/** Button text that is shown when cursor hovers over button */}
-                <Button.Content style={{ color: '#385F71' }} inverted hidden>
-                  <Icon name={'plus circle'}></Icon> ADD INFO
-                </Button.Content>
-              </Button>}>
-                {/** link to add account page */}
-                <Button inverted animated='fade' size={'medium'} as={NavLink} exact to={'/add-account'}
-                        style={{ backgroundColor: '#D7B377' }}>
-                  <Button.Content style={{ color: 'white' }} visible>
-                    <Icon name={'plus circle'}></Icon> ADD ACCOUNT
-                  </Button.Content>
-                  <Button.Content style={{ color: '#385F71' }} inverted hidden>
-                    <Icon name={'plus circle'}></Icon> ADD ACCOUNT
-                  </Button.Content>
-                </Button>
-                {/** Link to add credit card page */}
-                <Button inverted animated='fade' size={'medium'} as={NavLink} exact to={'/add-card'}
-                        style={{ backgroundColor: '#D7B377' }}>
-                  <Button.Content style={{ color: 'white' }} visible>
-                    <Icon name={'plus circle'}></Icon> ADD CREDIT CARD
-                  </Button.Content>
-                  <Button.Content style={{ color: '#385F71' }} inverted hidden>
-                    <Icon name={'plus circle'}></Icon> ADD CREDIT CARD
-                  </Button.Content>
-                </Button>
-              </Popup>
-            </Grid.Column>
-            {/**  This column is empty as is just here to put space between the side bar probably will be removed */}
-            <Grid.Column width={1}>
-            </Grid.Column>
-            {/**  This column will hold the credit card information, this is temporary until we can figure out how to
-             *make the page only show either credit card or account information */}
-            <Grid.Column inverted width={6}>
-              <h1>
-                Credit Cards
-              </h1>
-              <Card.Group style={ divStyle }>
-                {this.props.cards.map((card) => <CardItem key={card._id} card={card} />)}
-              </Card.Group>
-            </Grid.Column>
-            {/**  This column will hold the account information, this is temporary until we can figure out how to
-             *make the page only show either credit card or account information */}
-            <Grid.Column inverted width={6}>
-              <h1>
-                Accounts
-              </h1>
-              <Card.Group style={ divStyle }>
-              {this.props.informations.map((information) => <InformationItem key={information._id} information={information} />)}
-              </Card.Group>
-            </Grid.Column>
-          </Grid>
+          <Sidebar.Pushable inverted as={Segment} style={{ backgroundColor: '#2A427A' }}>
+            <Sidebar
+                as={Menu}
+                animation='overlay'
+                icon='labeled'
+                inverted
+                vertical
+                visible
+                width='thin'
+                style={{ backgroundColor: '#385F71' }}
+            >
+              <Image centered style={{ width: '60px', marginBottom: '30px' }} src="/images/LOHK-white.png"/>
+              <Menu.Item>
+              MY INFO
+              </Menu.Item>
+              <Menu.Item onClick={this.displaysCard}>
+                <Icon name={'credit card outline'}/> Credit Cards
+              </Menu.Item>
+              <Menu.Item onClick={this.displaysInfo}>
+                <Icon name={'user outline'}/> Accounts
+              </Menu.Item>
+              <Menu.Item>
+              ADD INFO
+              </Menu.Item>
+              <Menu.Item as={NavLink} exact to={'/add-card'}>
+                <Icon name='plus'/>
+                Add Credit Card
+              </Menu.Item>
+              <Menu.Item as={NavLink} exact to={'/add-account'}>
+                <Icon name='plus'/>
+                Add Account
+              </Menu.Item>
+            </Sidebar>
+
+            <Sidebar.Pusher>
+              <Segment basic>
+                <Grid>
+
+                  {/**  This column is empty as is just here to put space between the side bar probably will be removed */}
+                  <Grid.Column width={3} style={{ paddingBottom: '600px' }}>
+                  </Grid.Column>
+
+                  {/**  This column will hold the credit card information, this is temporary until we can figure out how to
+                   *make the page only show either credit card or account information */}
+                  {page}
+                </Grid>
+              </Segment>
+            </Sidebar.Pusher>
+          </Sidebar.Pushable>
+
         </div>
     );
   }
