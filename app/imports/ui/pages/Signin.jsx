@@ -13,7 +13,7 @@ export default class Signin extends React.Component {
   /** Initialize component state with properties for login and redirection. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '', redirectToReferer: false };
+    this.state = { email: '', password: '', error: '', redirectToPin: false, pin: '', redirectToRefer: false };
   }
 
   /** Update the form controls each time the user interacts with them. */
@@ -22,39 +22,50 @@ export default class Signin extends React.Component {
   }
 
   /** Handle Signin submission using Meteor's account mechanism. */
-  submit = () => {
+  submit_pin = () => {
     const { email, password } = this.state;
     Meteor.loginWithPassword(email, password, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
-        this.setState({ error: '', redirectToReferer: true });
+        this.setState({ error: '', redirectToRefer: true });
       }
     });
   }
 
+  submit_login = () => {
+    const { email, password } = this.state;
+    Meteor.loginWithPassword(email, password, (err) => {
+      if (err) {
+        this.setState({ error: err.reason });
+      } else {
+        const random_pin = Math.floor(Math.random() * 10000);
+        this.setState({ error: '', redirectToPin: true, pin: random_pin });
+        Meteor.logout();
+      }
+    });
+  }
+
+
   /** Render the signin form. */
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/emailpin' } };
+
+    const { from } = this.props.location.state || { from: { pathname: '/dash' } };
     // if correct authentication, redirect to page instead of login screen
-    if (this.state.redirectToReferer) {
-      return <Redirect to={from}/>;
-    }
+    // if (this.state.redirectToReferer) {
+    //   return <Redirect to={from}/>;
+    // }
     // Otherwise return the Login form.
 
-    return (
-        <div>
-          <Grid textAlign="center" verticalAlign="middle" centered columns={'equal'}>
-            <Grid.Column stretched color={'blue'}>
-              <Header as={'h2'}>
-                WELCOME TO LOHK
-              </Header>
-            </Grid.Column>
+    const loginPage = (
+        <Container>
+          <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
             <Grid.Column>
               <Header as="h2" textAlign="center">
                 Login to your account
               </Header>
-              <Form onSubmit={this.submit}>
+              <Form onSubmit={this.submit_login}>
+                <Segment stacked>
                   <Form.Input
                       label="Email"
                       icon="user"
@@ -74,6 +85,7 @@ export default class Signin extends React.Component {
                       onChange={this.handleChange}
                   />
                   <Form.Button content="Submit"/>
+                </Segment>
               </Form>
               <Message>
                 <Link to="/signup">Click here to Register</Link>
@@ -89,8 +101,73 @@ export default class Signin extends React.Component {
               )}
             </Grid.Column>
           </Grid>
-        </div>
+        </Container>
     );
+
+    const pinPage = (
+        <Container>
+          <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
+            <Grid.Column>
+              <Header as="h2" textAlign="center">
+                You should have recieved an email with a pin.
+                Please enter that pin in the form below as exactly as it shows in the email.
+              </Header>
+
+              {/* this button will allow the email to be sent - TO BE IMPLEMENTED */}
+              {/* <Form.Button content="Send verification pin" onSubmit={this.sendEmail}/> */}
+
+              <Form onSubmit={this.submit_pin}>
+                <Segment>
+                  <Form.Input
+                      label="Pin"
+                      icon="lock"
+                      iconPosition="left"
+                      name="pin_input"
+                      placeholder="Type Pin Here"
+                      type="pin"
+                      onChange={this.handleChange}
+                  />
+                  <Form.Button content="Submit"/>
+                </Segment>
+              </Form>
+              {this.state.error === '' ? (
+                  ''
+              ) : (
+                  <Message
+                      error
+                      header="Pin was not correct"
+                      content={this.state.error}
+                  />
+              )}
+            </Grid.Column>
+          </Grid>
+        </Container>
+    );
+
+    let displayPage;
+
+    if (this.state.redirectToRefer) {
+      return <Redirect to={from}/>;
+    }
+
+    if (this.state.redirectToPin) {
+
+      const template_params = {
+        to: this.state.email,
+        pin: this.state.pin,
+      };
+
+      const service_id = 'default_service';
+      const template_id = 'template_Z888wQ4B';
+      // eslint-disable-next-line no-undef
+      emailjs.send(service_id, template_id, template_params);
+
+      displayPage = pinPage;
+    } else {
+      displayPage = loginPage;
+    }
+
+    return displayPage;
   }
 }
 
