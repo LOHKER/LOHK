@@ -43,25 +43,28 @@ export default class Signin extends React.Component {
     // Otherwise return the Login form.
 
     return (
-        <div>
-          <Grid textAlign="center" verticalAlign="middle" centered columns={'equal'}>
-            <Grid.Column stretched color={'blue'}>
-              <Header as={'h2'}>
-                WELCOME TO LOHK
-              </Header>
+        <div style={{ paddingTop: '70px', paddingBottom: '7em' }}>
+          {/*style={{ backgroundColor: '#2A427A' }}*/}
+          <Grid textAlign='center' relaxed container verticalAlign='middle' centered columns={'equal'}>
+            <Grid.Column>
+                <Header as={'h2'}>
+                  WELCOME BACK TO LOHK
+                </Header>
+                <Header as={'h3'}>
+                  Access all your passwords in one place.
+                </Header>
+
             </Grid.Column>
             <Grid.Column>
-              <Header as="h2" textAlign="center">
-                Login to your account
-              </Header>
+
               <Form onSubmit={this.submit}>
                   <Form.Input
-                      label="Email"
+                      label="Email Address"
                       icon="user"
                       iconPosition="left"
                       name="email"
                       type="email"
-                      placeholder="E-mail address"
+                      placeholder="Enter your e-mail..."
                       onChange={this.handleChange}
                   />
                   <Form.Input
@@ -73,7 +76,9 @@ export default class Signin extends React.Component {
                       type="password"
                       onChange={this.handleChange}
                   />
-                  <Form.Button content="Submit"/>
+                  <Form.Button
+                      fluid
+                      content="Submit"/>
               </Form>
               <Message>
                 <Link to="/signup">Click here to Register</Link>
