@@ -13,7 +13,8 @@ export default class Signin extends React.Component {
   /** Initialize component state with properties for login and redirection. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '', redirectToPin: false, pin: '', redirectToRefer: false };
+    this.state = { email: '', password: '', error: '', redirectToPin: false,
+      pin: '', pin_input: '', redirectToRefer: false };
   }
 
   /** Update the form controls each time the user interacts with them. */
@@ -52,8 +53,6 @@ export default class Signin extends React.Component {
         const random_pin = (`${Math.random()}`).substring(2, 7);
         this.setState({ error: '', redirectToPin: true, pin: random_pin });
         Meteor.logout();
-
-        e.target.reset();
 
         const template_params = {
           to: this.state.email,
@@ -149,7 +148,7 @@ export default class Signin extends React.Component {
                       name="pin_input"
                       placeholder="Type Pin Here"
                       type="pin"
-                      value = {this.state.pin_input}
+                      value={this.state.pin_input}
                       onChange={this.handleChange_pin}
                   />
                   <Form.Button content="Submit"/>
