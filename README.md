@@ -1,4 +1,7 @@
 <h1><b>06/01/20 - 06/07/20 | Week One of Development</b></h1>
+
+<b>LOHK's Base</b>
+
 LOHK has decided to use the base template provided by ICS 314 at UH Manoa. For details regarding the template, please click [here](http://ics-software-engineering.github.io/meteor-application-template-react/).
 
 <b>What is complete thus far:</b>
@@ -39,7 +42,8 @@ LOHK has decided to use the base template provided by ICS 314 at UH Manoa. For d
   - The ability to store information for any account and card information
 
 <b>Link:</b>
-To access the current repository that is being worked on, click [here](https://github.com/LOHKER/LOHK). We have decided to move the repo to an organization now, and have now renamed the team to be LOHKER instead of Turing. 
+
+The development team of LOHK has decided to move the repo to an organization now, and have renamed the team to be LOHKER instead of Turing. To access the current repository that is being worked on, click [here](https://github.com/LOHKER/LOHK).
 
 <b>Pending:</b>
 
