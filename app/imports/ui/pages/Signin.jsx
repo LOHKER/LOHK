@@ -13,8 +13,10 @@ export default class Signin extends React.Component {
   /** Initialize component state with properties for login and redirection. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '', redirectToPin: false,
-      pin: '', pin_input: '', redirectToRefer: false };
+    this.state = {
+      email: '', password: '', error: '', redirectToPin: false,
+      pin: '', pin_input: '', redirectToRefer: false,
+    };
   }
 
   /** Update the form controls each time the user interacts with them. */
@@ -25,7 +27,6 @@ export default class Signin extends React.Component {
   handleChange_pin = (e, { name, value }) => {
     this.setState({ [name]: value });
   }
-
 
   /** Handle Signin submission using Meteor's account mechanism. */
   submit_pin = () => {
@@ -74,7 +75,6 @@ export default class Signin extends React.Component {
 
   /** Render the signin form. */
   render() {
-
     const { from } = this.props.location.state || { from: { pathname: '/dash' } };
     // if correct authentication, redirect to page instead of login screen
     // if (this.state.redirectToReferer) {
@@ -82,27 +82,26 @@ export default class Signin extends React.Component {
     // }
     // Otherwise return the Login form.
     const loginPage = (
-        <Container>
-          <div style={{ paddingTop: '70px', paddingBottom: '7em' }}>
-            {/* style={{ backgroundColor: '#2A427A' }} */}
-            <Grid textAlign='center' relaxed container verticalAlign='middle' centered columns={'equal'}>
-              <Grid.Column>
-                <Header as={'h2'}>
-                  WELCOME BACK TO LOHK
-                </Header>
-                <Header as={'h3'}>
-                  Access all your passwords in one place.
-                </Header>
+        <div style={{ paddingTop: '70px', paddingBottom: '80px' }}>
+          <Grid relaxed='very' divided container verticalAlign='middle' centered columns={'equal'}>
+            <Grid.Column>
+              <Header as={'h2'}>
+                WELCOME BACK TO LOHK
+              </Header>
+              <Header as={'h3'}>
+                Access all your passwords in one place
+              </Header>
+            </Grid.Column>
+            <Grid.Column>
               <Form onSubmit={this.submit_login}>
-                <Segment stacked>
-
+                <Segment>
                   <Form.Input
                       label="Email Address"
                       icon="user"
                       iconPosition="left"
                       name="email"
                       type="email"
-                      placeholder="E-mail address"
+                      placeholder="Email"
                       onChange={this.handleChange_login}
                   />
                   <Form.Input
@@ -114,12 +113,16 @@ export default class Signin extends React.Component {
                       type="password"
                       onChange={this.handleChange_login}
                   />
-                  <Form.Button content="Submit"/>
+                  <Form.Button
+                      fluid
+                      style={{ color: 'white', backgroundColor: '#2A427A' }}
+                      disabled={!this.state.email || !this.state.password}
+                      content="LOG IN"
+                  />
+                  New to LOHK?&ensp;
+                  <Link to="/signup">Create an account</Link>
                 </Segment>
               </Form>
-              <Message>
-                <Link to="/signup">Click here to Register</Link>
-              </Message>
               {this.state.error === '' ? (
                   ''
               ) : (
@@ -129,10 +132,9 @@ export default class Signin extends React.Component {
                       content={this.state.error}
                   />
               )}
-              </Grid.Column>
+            </Grid.Column>
           </Grid>
-          </div>
-        </Container>
+        </div>
     );
 
     const pinPage = (
