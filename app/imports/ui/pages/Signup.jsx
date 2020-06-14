@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Form, Grid, Header, Message, Popup, Image } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 
 /**
@@ -75,23 +75,25 @@ class Signup extends React.Component {
       const code = password.charCodeAt(i);
       if (code >= 97 && code <= 122) {
         hasLowerCase = true;
-      } else if (code >= 65 && code <= 90) {
-        hasUpperCase = true;
-      } else if (code >= 48 && code <= 57) {
-        hasNumeric = true;
-      } else if (code >= 33 && code <= 126) {
-        hasSpecial = true;
-      } else {
-        hasInvalid = true;
-        break;
-      }
+      } else
+        if (code >= 65 && code <= 90) {
+          hasUpperCase = true;
+        } else
+          if (code >= 48 && code <= 57) {
+            hasNumeric = true;
+          } else
+            if (code >= 33 && code <= 126) {
+              hasSpecial = true;
+            } else {
+              hasInvalid = true;
+              break;
+            }
     }
 
     if (hasInvalid) {
       this.setState({ error: 'Password contains an invalid character.' });
       return false;
     }
-
 
     if (hasSpecial && hasUpperCase && hasLowerCase && hasNumeric && !hasInvalid) {
       return true;
@@ -123,66 +125,69 @@ class Signup extends React.Component {
       return <Redirect to={from}/>;
     }
 
+    const requirements =
+        <ul>
+          <li>Must be 8 - 32 characters long</li>
+          <li>At least 1 upper case character</li>
+          <li>At least 1 lower case character</li>
+          <li>At least 1 numeric character</li>
+          <li>At least 1 special character</li>
+          <li>New password correctly entered twice</li>
+          <li>New password cannot be the same as the old password</li>
+        </ul>;
+
     return (
-        <Container>
-          <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
+        <div style={{ paddingTop: '40px', paddingBottom: '80px' }}>
+          <Image style={{ width: '100px' }} centered src={'/images/LOHK-dark.png'}/>
+          <Header as="h2" textAlign="center">
+            WELCOME TO LOHK
+          </Header>
+          <Grid divided relaxed='very' container
+                style={{ paddingTop: '50px' }} centered columns={'equal'}>
             <Grid.Column>
-              <Header as="h2" textAlign="center">
-                Register your account
-              </Header>
               <Form onSubmit={this.submit}>
-                <Segment stacked>
-                  <Form.Input
-                      label="Email"
-                      icon="user"
-                      iconPosition="left"
-                      name="email"
-                      type="email"
-                      placeholder="E-mail address"
-                      onChange={this.handleChange}
-                  />
-                  <Grid columns={2} stackable textAlign='left'>
-                    <Grid.Row verticalAlign='middle'>
-                      <Grid.Column>
-                        <Form.Input
-                            label=""
-                            icon="lock"
-                            iconPosition="left"
-                            name="password"
-                            placeholder="Password"
-                            type="password"
-                            onChange={this.handleChange}
-                        />
-                      </Grid.Column>
-                      <Grid.Column>
-                        <Form.Input
-                            label=""
-                            icon=""
-                            iconPosition="left"
-                            name="confirm"
-                            placeholder="Confirm"
-                            type="password"
-                            onChange={this.handleChange}
-                        />
-                      </Grid.Column>
-                    </Grid.Row>
-                  </Grid>
-                  <p>
-                    Password Requirements: <br/>
-                    - Must be 8 - 32 characters long<br/>
-                    - Have at least one upper case character<br/>
-                    - Have at least one lower case character<br/>
-                    - Have at least one numeric character<br/>
-                    - Have at least one special character<br/>
-                    - New password correctly entered twice<br/>
-                    - New password cannot be the same as the old password<br/>
-                  </p>
-                  <Form.Button content="Submit"/>
-                </Segment>
+                <Form.Input
+                    label="Email Address"
+                    icon="mail"
+                    iconPosition="left"
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    onChange={this.handleChange}
+                />
+                <Popup
+                    header='Password Requirements:'
+                    hoverable
+                    content={requirements}
+                    position='bottom left'
+                    flowing
+                    trigger={<Form.Input
+                        label="Password"
+                        icon="lock"
+                        iconPosition="left"
+                        name="password"
+                        placeholder="Password"
+                        type="password"
+                        onChange={this.handleChange}
+                    />}
+                />
+                <Form.Input
+                    label="Confirm Password"
+                    icon="lock"
+                    iconPosition="left"
+                    name="confirm"
+                    placeholder="Confirm password"
+                    type="password"
+                    onChange={this.handleChange}
+                />
+                <Form.Button
+                    fluid
+                    style={{ color: 'white', backgroundColor: '#2A427A' }}
+                    disabled={!this.state.email || !this.state.password || !this.state.confirm}
+                    content="SIGN UP"
+                />
+                Already have an account? <Link to="/signin">Login</Link>
               </Form>
-              <Message>
-                Already have an account? Login <Link to="/signin">here</Link>
-              </Message>
               {this.state.error === '' ? (
                   ''
               ) : (
@@ -193,8 +198,11 @@ class Signup extends React.Component {
                   />
               )}
             </Grid.Column>
+            <Grid.Column>
+              <Image centered src={'/images/laptop.png'}/>
+            </Grid.Column>
           </Grid>
-        </Container>
+        </div>
     );
   }
 }

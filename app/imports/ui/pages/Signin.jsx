@@ -13,24 +13,36 @@ export default class Signin extends React.Component {
   /** Initialize component state with properties for login and redirection. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '', redirectToPin: false, pin: '', redirectToRefer: false };
+    this.state = {
+      email: '', password: '', error: '', redirectToPin: false,
+      pin: '', pin_input: '', redirectToRefer: false,
+    };
   }
 
   /** Update the form controls each time the user interacts with them. */
-  handleChange = (e, { name, value }) => {
+  handleChange_login = (e, { name, value }) => {
+    this.setState({ [name]: value });
+  }
+
+  handleChange_pin = (e, { name, value }) => {
     this.setState({ [name]: value });
   }
 
   /** Handle Signin submission using Meteor's account mechanism. */
   submit_pin = () => {
-    const { email, password } = this.state;
-    Meteor.loginWithPassword(email, password, (err) => {
-      if (err) {
-        this.setState({ error: err.reason });
-      } else {
-        this.setState({ error: '', redirectToRefer: true });
-      }
-    });
+    const { pin_input, pin } = this.state;
+    if (pin_input === pin) {
+      const { email, password } = this.state;
+      Meteor.loginWithPassword(email, password, (err) => {
+        if (err) {
+          this.setState({ error: err.reason });
+        } else {
+          this.setState({ error: '', redirectToRefer: true });
+        }
+      });
+    } else {
+      this.setState({ error: 'Incorrect Pin' });
+    }
   }
 
   submit_login = () => {
@@ -39,41 +51,58 @@ export default class Signin extends React.Component {
       if (err) {
         this.setState({ error: err.reason });
       } else {
-        const random_pin = Math.floor(Math.random() * 10000);
+        const random_pin = (`${Math.random()}`).substring(2, 7);
         this.setState({ error: '', redirectToPin: true, pin: random_pin });
         Meteor.logout();
+
+        const template_params = {
+          to: this.state.email,
+          pin: this.state.pin,
+        };
+
+        const service_id = 'default_service';
+        const template_id = 'template_Z888wQ4B';
+        const sendEmail = false;
+        if (sendEmail) {
+          // eslint-disable-next-line no-undef
+          emailjs.send(service_id, template_id, template_params);
+        } else {
+          console.log(`pin = ${this.state.pin}`);
+        }
       }
     });
   }
 
-
   /** Render the signin form. */
   render() {
-
     const { from } = this.props.location.state || { from: { pathname: '/dash' } };
     // if correct authentication, redirect to page instead of login screen
     // if (this.state.redirectToReferer) {
     //   return <Redirect to={from}/>;
     // }
     // Otherwise return the Login form.
-
     const loginPage = (
-        <Container>
-          <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
+        <div style={{ paddingTop: '70px', paddingBottom: '80px' }}>
+          <Grid relaxed='very' divided container verticalAlign='middle' centered columns={'equal'}>
             <Grid.Column>
-              <Header as="h2" textAlign="center">
-                Login to your account
+              <Header as={'h2'}>
+                WELCOME BACK TO LOHK
               </Header>
+              <Header as={'h3'}>
+                Access all your passwords in one place
+              </Header>
+            </Grid.Column>
+            <Grid.Column>
               <Form onSubmit={this.submit_login}>
-                <Segment stacked>
+                <Segment>
                   <Form.Input
-                      label="Email"
+                      label="Email Address"
                       icon="user"
                       iconPosition="left"
                       name="email"
                       type="email"
-                      placeholder="E-mail address"
-                      onChange={this.handleChange}
+                      placeholder="Email"
+                      onChange={this.handleChange_login}
                   />
                   <Form.Input
                       label="Password"
@@ -82,14 +111,18 @@ export default class Signin extends React.Component {
                       name="password"
                       placeholder="Password"
                       type="password"
-                      onChange={this.handleChange}
+                      onChange={this.handleChange_login}
                   />
-                  <Form.Button content="Submit"/>
+                  <Form.Button
+                      fluid
+                      style={{ color: 'white', backgroundColor: '#2A427A' }}
+                      disabled={!this.state.email || !this.state.password}
+                      content="LOG IN"
+                  />
+                  New to LOHK?&ensp;
+                  <Link to="/signup">Create an account</Link>
                 </Segment>
               </Form>
-              <Message>
-                <Link to="/signup">Click here to Register</Link>
-              </Message>
               {this.state.error === '' ? (
                   ''
               ) : (
@@ -101,7 +134,7 @@ export default class Signin extends React.Component {
               )}
             </Grid.Column>
           </Grid>
-        </Container>
+        </div>
     );
 
     const pinPage = (
@@ -112,10 +145,8 @@ export default class Signin extends React.Component {
                 You should have recieved an email with a pin.
                 Please enter that pin in the form below as exactly as it shows in the email.
               </Header>
-
               {/* this button will allow the email to be sent - TO BE IMPLEMENTED */}
               {/* <Form.Button content="Send verification pin" onSubmit={this.sendEmail}/> */}
-
               <Form onSubmit={this.submit_pin}>
                 <Segment>
                   <Form.Input
@@ -125,7 +156,8 @@ export default class Signin extends React.Component {
                       name="pin_input"
                       placeholder="Type Pin Here"
                       type="pin"
-                      onChange={this.handleChange}
+                      value={this.state.pin_input}
+                      onChange={this.handleChange_pin}
                   />
                   <Form.Button content="Submit"/>
                 </Segment>
@@ -144,30 +176,14 @@ export default class Signin extends React.Component {
         </Container>
     );
 
-    let displayPage;
-
     if (this.state.redirectToRefer) {
       return <Redirect to={from}/>;
     }
 
     if (this.state.redirectToPin) {
-
-      const template_params = {
-        to: this.state.email,
-        pin: this.state.pin,
-      };
-
-      const service_id = 'default_service';
-      const template_id = 'template_Z888wQ4B';
-      // eslint-disable-next-line no-undef
-      emailjs.send(service_id, template_id, template_params);
-
-      displayPage = pinPage;
-    } else {
-      displayPage = loginPage;
+      return pinPage;
     }
-
-    return displayPage;
+    return loginPage;
   }
 }
 
