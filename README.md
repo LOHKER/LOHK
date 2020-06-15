@@ -47,7 +47,7 @@ The development team of LOHK has decided to move the repo to an organization now
 
 <b>Pending:</b>
 
-- Since the primary functionalities of the LOHK is complete, we plan to implement the following:
+- Since the primary functionalities of LOHK is complete, we plan to implement the following:
   - Further front-end development to achieve a polished, intuitive UI
   - Allow the user to remove any information if they wish to remove a previously created input
 - If we also have time to work, after front-end is achieved, we wish to implement the following:
