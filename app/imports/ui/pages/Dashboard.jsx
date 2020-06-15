@@ -1,24 +1,150 @@
 import React from 'react';
-import { Grid, Image } from 'semantic-ui-react';
+import { Meteor } from 'meteor/meteor';
+import { Button, Icon, Popup, Grid, Image, Card, Segment, Sidebar, Menu, Header } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
+import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
+import { Informations } from '../../api/information/Information';
+import { Cards } from '../../api/card/Card';
+import InformationItem from '../components/InformationItem';
+import CardItem from '../components/CardItem';
 
 /** A simple static component to render some text for the landing page. */
 class Dashboard extends React.Component {
+  state = {
+    displayInfo: false,
+  }
+
+  state = {
+    displayCard: false,
+  }
+
+  displaysInfo = () => {
+    this.setState({
+      displayInfo: !this.state.displayInfo,
+    });
+    if (this.state.displayCard) {
+      this.setState({
+        displayCard: !this.state.displayCard,
+      });
+    }
+  }
+
+  displaysCard = () => {
+    this.setState({
+      displayCard: !this.state.displayCard,
+    });
+    if (this.state.displayInfo) {
+      this.setState({
+        displayInfo: !this.state.displayInfo,
+      });
+    }
+  }
+
   render() {
+    const divStyle = { paddingTop: '20px', paddingBottom: '300px' };
+    let page = <Grid.Column verticleAlign='middle' width={10} style={ divStyle } textAlign= 'center'>
+      <Image centered style={{ width: '130px', marginBottom: '30px', marginTop: '30px' }} src="/images/LOHK-white.png"/>
+      <h1>
+        Welcome to LOHK
+      </h1>
+    </Grid.Column>;
+    if (this.state.displayInfo) {
+      page = (
+          <Grid.Column inverted width={12}>
+            <h1>
+              Accounts
+            </h1>
+            <Card.Group style={ divStyle }>
+              {this.props.informations.map((information) => <InformationItem key={information._id} information={information} />)}
+            </Card.Group>
+          </Grid.Column>
+      );
+    }
+    if (this.state.displayCard) {
+      page = (
+          <Grid.Column inverted width={12}>
+            <h1>
+              Credit Cards
+            </h1>
+            <Card.Group style={ divStyle }>
+              { this.props.cards.map((card) => <CardItem key={card._id} card={card}/>) }
+            </Card.Group>
+          </Grid.Column>
+      );
+    }
     return (
-        <Grid verticalAlign='middle' textAlign='center' container>
+        <div style={{ backgroundColor: '#2A427A' }}>
+          <Sidebar.Pushable inverted as={Segment} style={{ backgroundColor: '#2A427A' }}>
+            <Sidebar
+                as={Menu}
+                animation='overlay'
+                icon='labeled'
+                inverted
+                vertical
+                visible
+                width='thin'
+                style={{ backgroundColor: '#385F71' }}
+            >
+              <Image centered style={{ width: '60px', marginBottom: '30px' }} src="/images/LOHK-white.png"/>
+              <Menu.Item>
+              MY INFO
+              </Menu.Item>
+              <Menu.Item onClick={this.displaysCard}>
+                <Icon name={'credit card outline'}/> Credit Cards
+              </Menu.Item>
+              <Menu.Item onClick={this.displaysInfo}>
+                <Icon name={'user outline'}/> Accounts
+              </Menu.Item>
+              <Menu.Item>
+              ADD INFO
+              </Menu.Item>
+              <Menu.Item as={NavLink} exact to={'/add-card'}>
+                <Icon name='plus'/>
+                Add Credit Card
+              </Menu.Item>
+              <Menu.Item as={NavLink} exact to={'/add-account'}>
+                <Icon name='plus'/>
+                Add Account
+              </Menu.Item>
+            </Sidebar>
 
-          <Grid.Column width={4}>
-            <Image size='small' circular src="/images/meteor-logo.png"/>
-          </Grid.Column>
+            <Sidebar.Pusher>
+              <Segment basic>
+                <Grid>
 
-          <Grid.Column width={8}>
-            <h1>DASHBOARD GOES HERE</h1>
-            <h1>THIS IS BASCIALLY THE CENTRAL HOME PAGE</h1>
-          </Grid.Column>
+                  {/**  This column is empty as is just here to put space between the side bar probably will be removed */}
+                  <Grid.Column width={3} style={{ paddingBottom: '600px' }}>
+                  </Grid.Column>
 
-        </Grid>
+                  {/**  This column will hold the credit card information, this is temporary until we can figure out how to
+                   *make the page only show either credit card or account information */}
+                  {page}
+                </Grid>
+              </Segment>
+            </Sidebar.Pusher>
+          </Sidebar.Pushable>
+
+        </div>
     );
   }
 }
 
-export default Dashboard;
+/** Require an array of Information documents in the props. */
+Dashboard.propTypes = {
+  informations: PropTypes.array.isRequired,
+  cards: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
+
+/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+export default withTracker(() => {
+  // Get access to item documents.
+  const subscription = Meteor.subscribe('Information');
+  const subscription2 = Meteor.subscribe('Card');
+  return {
+    informations: Informations.find({}).fetch(),
+    cards: Cards.find({}).fetch(),
+    ready: subscription.ready() && subscription2.ready(),
+  };
+})(Dashboard);
