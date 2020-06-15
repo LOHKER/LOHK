@@ -17,7 +17,7 @@ LOHK has decided to use the base template provided by ICS 314 at UH Manoa. For d
 <b>Team Members and their Responsibilities:</b>
 
 - Corben Broennimann: Front-end Development
-  - Current Workings: Dashboard desgin creation 
+  - Current Workings: Dashboard design creation 
   - Future handlings: Front-end development of the application
   
 - Jake Camarao: Back-end Development
@@ -56,7 +56,7 @@ The development team of LOHK has decided to move the repo to an organization now
 <b>Roles and Responsibilities:</b>
 
 - Corben Broennimann: Front-end Development
-  - New Completions: 
+  - New Completions: Basic dashboard completed
   - Current: Further front-end development on the main dashboard
   - Next: Assist in cleaning up the UI and front-end if needed
   
@@ -68,7 +68,7 @@ The development team of LOHK has decided to move the repo to an organization now
 - Kyra Ikeda: Front-end Development
   - New Completions: Landing page, Sign-in/Sign-up page
   - Current: Further front-end development on all pages
-  - Next:
+  - Next: Other pages (About us, terms of service, privacy notice)
 
 - James Lau: Back-end Development
   - New Completions: Email system with pin verification
