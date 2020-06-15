@@ -20,6 +20,13 @@ Meteor.publish('Card', function publish() {
   }
   return this.ready();
 });
+Meteor.publish('Admin', function publish() {
+  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
+    const username = Meteor.users.find();
+    return username;
+  }
+  return this.ready();
+});
 
 // /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
 // Meteor.publish('StuffAdmin', function publish() {
