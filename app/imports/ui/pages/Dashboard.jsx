@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Icon, Popup, Grid, Image, Card, Segment, Sidebar, Menu, Header } from 'semantic-ui-react';
+import { Button, Icon, Popup, Grid, Image, Card, Segment, Sidebar, Menu, Header, Modal } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -8,6 +8,7 @@ import { Informations } from '../../api/information/Information';
 import { Cards } from '../../api/card/Card';
 import InformationItem from '../components/InformationItem';
 import CardItem from '../components/CardItem';
+import NavBar from '../components/NavBar';
 
 /** A simple static component to render some text for the landing page. */
 class Dashboard extends React.Component {
@@ -18,6 +19,8 @@ class Dashboard extends React.Component {
   state = {
     displayCard: false,
   }
+
+  state = { open: false }
 
   displaysInfo = () => {
     this.setState({
@@ -41,7 +44,22 @@ class Dashboard extends React.Component {
     }
   }
 
+  open = () => this.setState({ open: true })
+
+  close = () => this.setState({ open: false })
+
+  /** this function will occur when the user clicks 'yes'
+   * The user that is selected will be DELETED from the database
+   * Then, the user will have the page refreshed
+   */
+  handleYes() {
+    Meteor.users.remove(Meteor.userId());
+    /** this refreshes the page */
+    // eslint-disable-next-line no-unused-expressions
+  }
+
   render() {
+    const { open } = this.state;
     const divStyle = { paddingTop: '20px', paddingBottom: '300px' };
     let page = <Grid.Column verticleAlign='middle' width={10} style={ divStyle } textAlign= 'center'>
       <Image centered style={{ width: '130px', marginBottom: '30px', marginTop: '30px' }} src="/images/LOHK-white.png"/>
@@ -75,6 +93,7 @@ class Dashboard extends React.Component {
     }
     return (
         <div style={{ backgroundColor: '#2A427A' }}>
+        <NavBar/>
           <Sidebar.Pushable inverted as={Segment} style={{ backgroundColor: '#2A427A' }}>
             <Sidebar
                 as={Menu}
@@ -106,6 +125,43 @@ class Dashboard extends React.Component {
               <Menu.Item as={NavLink} exact to={'/add-account'}>
                 <Icon name='plus'/>
                 Add Account
+              </Menu.Item>
+              <Menu.Item>
+              User Controls
+              </Menu.Item>
+              <Menu.Item>
+              <Modal
+                open={open}
+                onOpen={this.open}
+                onClose={this.close}
+                trigger={<Button>Delete Account</Button>} basic size='small'>
+              <Header>
+                <Icon name='erase' />
+                Remove your account from LOHK&apos;s database.
+              </Header>
+              <Modal.Content>
+                <p>
+                  Are you sure you want to delete your account?
+                  This can't be undone once the action has gone through.
+                  All of the information saved will be taken out of our records.
+                </p>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button
+                    basic color='red'
+                    onClick={this.close}
+                    inverted>
+                  <Icon name='remove' /> No
+                </Button>
+                <Button
+                    basic color='green'
+                    onClick={this.handleYes.bind(this)}
+                    as={NavLink} exact to={'/delete'}
+                    inverted>
+                  <Icon name='checkmark' /> Yes
+                </Button>
+              </Modal.Actions>
+            </Modal>
               </Menu.Item>
             </Sidebar>
 
