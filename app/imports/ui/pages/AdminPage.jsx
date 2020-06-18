@@ -4,6 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Container, Table, Header, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import UserItem from '../components/UserItem';
+import NavBar from '../components/NavBar';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class AdminPage extends React.Component {
@@ -16,6 +17,8 @@ class AdminPage extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     return (
+      <div>
+        <NavBar/>
         <Container>
           <Header as="h2" textAlign="center">All Users Registered</Header>
           <Table celled>
@@ -32,6 +35,7 @@ class AdminPage extends React.Component {
             </Table.Body>
           </Table>
         </Container>
+     </div>
     );
   }
 }

@@ -1,12 +1,14 @@
 import React from 'react';
 import { Grid, Image, Header, Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
     return (
         <div style={{ backgroundColor: '#2A427A' }}>
+          <NavBar/>
           <Grid verticalAlign='middle' textAlign='center' container
                 style={{ paddingTop: '4em', paddingBottom: '7em' }}>
             <Grid.Column>
