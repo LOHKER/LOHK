@@ -20,7 +20,7 @@ class Footer extends React.Component {
           <Grid.Row>
             <a href={'/#/about'}>About Us</a>
             <p>&ensp;|&ensp;</p>
-            <a href={'/#/terms'}>Privacy Notice</a>
+            <a href={'/#/privacy'}>Privacy Notice</a>
             <p>&ensp;|&ensp;</p>
             <a href={'/#/terms'}>Terms of Service</a>
           </Grid.Row>
