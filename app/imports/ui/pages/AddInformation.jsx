@@ -6,6 +6,7 @@ import { Meteor } from 'meteor/meteor';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import SimpleSchema from 'simpl-schema';
 import { Informations } from '../../api/information/Information';
+import NavBar from '../components/NavBar';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
@@ -37,6 +38,8 @@ class AddInformation extends React.Component {
 
     let fRef = null;
     return (
+      <div>
+        <NavBar/>
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center">New Account</Header>
@@ -51,6 +54,7 @@ class AddInformation extends React.Component {
             </AutoForm>
           </Grid.Column>
         </Grid>
+     </div>
     );
   }
 }

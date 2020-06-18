@@ -4,11 +4,9 @@ import { Meteor } from 'meteor/meteor';
 import 'semantic-ui-css/semantic.css';
 import { Roles } from 'meteor/alanning:roles';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import Dashboard from '../pages/Dashboard';
-import ListInformation from '../pages/ListInformation';
 import AddInformation from '../pages/AddInformation';
 import AddCard from '../pages/AddCard';
 import EditInformation from '../pages/EditInformation';
@@ -19,6 +17,7 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import AdminPage from '../pages/AdminPage';
 import RemoveUser from '../pages/RemoveUser';
+import Delete from '../pages/Delete.jsx';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -26,17 +25,16 @@ class App extends React.Component {
     return (
         <Router>
           <div>
-            <NavBar/>
             <Switch>
               <Route exact path="/" component={Landing}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
+              <Route path="/delete" component={Delete}/>
               <Route path="/dash" component={Dashboard}/>
               <ProtectedRoute path="/add" component={AddInformation}/>
               <ProtectedRoute path="/edit/:_id" component={EditInformation}/>
               <AdminProtectedRoute path="/admin" component={AdminPage}/>
               <AdminProtectedRoute path="/admin-remove" component={RemoveUser}/>
-              <ProtectedRoute path="/list" component={ListInformation}/>
               <ProtectedRoute path="/add-account" component={AddInformation}/>
               <ProtectedRoute path="/add-card" component={AddCard}/>
               <ProtectedRoute path="/edit-accounts/:_id" component={EditInformation}/>

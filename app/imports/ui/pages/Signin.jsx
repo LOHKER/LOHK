@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import NavBar from '../components/NavBar';
 
 /**
  * Signin page overrides the form’s submit event and call Meteor’s loginWithPassword().
@@ -82,6 +83,8 @@ export default class Signin extends React.Component {
     // }
     // Otherwise return the Login form.
     const loginPage = (
+      <div>
+        <NavBar/>
         <div style={{ paddingTop: '70px', paddingBottom: '80px' }}>
           <Grid relaxed='very' divided container verticalAlign='middle' centered columns={'equal'}>
             <Grid.Column>
@@ -135,9 +138,12 @@ export default class Signin extends React.Component {
             </Grid.Column>
           </Grid>
         </div>
+        </div>
     );
 
     const pinPage = (
+      <div>
+        <NavBar/>
         <Container>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
             <Grid.Column>
@@ -174,6 +180,7 @@ export default class Signin extends React.Component {
             </Grid.Column>
           </Grid>
         </Container>
+        </div>
     );
 
     if (this.state.redirectToRefer) {
