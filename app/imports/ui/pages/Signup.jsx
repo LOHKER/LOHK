@@ -11,7 +11,11 @@ class Signup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '', redirectToReferer: false };
+    this.state = { 
+    email: '',
+    user: '', 
+    password: '', 
+    error: '', redirectToReferer: false };
   }
 
   /** Update the form controls each time the user interacts with them. */
@@ -21,12 +25,12 @@ class Signup extends React.Component {
 
   /** Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   submit = () => {
-    const { email, password, confirm } = this.state;
+    const { email, user, password, confirm } = this.state;
 
     if (!this.isValidPassword(password, confirm)) {
       return;
     }
-    Accounts.createUser({ email, username: email, password }, (err) => {
+    Accounts.createUser({ email, user, username: user, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -154,6 +158,17 @@ class Signup extends React.Component {
                     type="email"
                     placeholder="Email"
                     onChange={this.handleChange}
+                    required
+                />
+                <Form.Input
+                    label="Username"
+                    icon="id badge"
+                    iconPosition="left"
+                    name="user"
+                    type="name"
+                    placeholder="Username"
+                    onChange={this.handleChange}
+                    required
                 />
                 <Popup
                     header='Password Requirements:'
