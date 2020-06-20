@@ -50,14 +50,16 @@ export default class Signin extends React.Component {
     const { username, password } = this.state;
     Meteor.loginWithPassword(username, password, (err) => {
       if (err) {
-        this.setState({ error: err.reason });
+        this.setState({ error: 'Username does not match password.' });
       } else {
+        this.setState({ email: Meteor.user().emails[0].address });
+        console.log(this.state.email);
         const random_pin = (`${Math.random()}`).substring(2, 7);
         this.setState({ error: '', redirectToPin: true, pin: random_pin });
         Meteor.logout();
 
         const template_params = {
-          to: this.state.username,
+          to: this.state.email,
           pin: this.state.pin,
         };
 
