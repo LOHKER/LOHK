@@ -15,7 +15,7 @@ export default class Signin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '', password: '', error: '', redirectToPin: false,
+      username: '', password: '', error: '', redirectToPin: false,
       pin: '', pin_input: '', redirectToRefer: false,
     };
   }
@@ -33,8 +33,8 @@ export default class Signin extends React.Component {
   submit_pin = () => {
     const { pin_input, pin } = this.state;
     if (pin_input === pin) {
-      const { email, password } = this.state;
-      Meteor.loginWithPassword(email, password, (err) => {
+      const { username, password } = this.state;
+      Meteor.loginWithPassword(username, password, (err) => {
         if (err) {
           this.setState({ error: err.reason });
         } else {
@@ -47,8 +47,8 @@ export default class Signin extends React.Component {
   }
 
   submit_login = () => {
-    const { email, password } = this.state;
-    Meteor.loginWithPassword(email, password, (err) => {
+    const { username, password } = this.state;
+    Meteor.loginWithPassword(username, password, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -57,7 +57,7 @@ export default class Signin extends React.Component {
         Meteor.logout();
 
         const template_params = {
-          to: this.state.email,
+          to: this.state.username,
           pin: this.state.pin,
         };
 
@@ -99,12 +99,12 @@ export default class Signin extends React.Component {
               <Form onSubmit={this.submit_login}>
                 <Segment>
                   <Form.Input
-                      label="Email Address"
+                      label="Username"
                       icon="user"
                       iconPosition="left"
-                      name="email"
-                      type="email"
-                      placeholder="Email"
+                      name="username"
+                      type="username"
+                      placeholder="Username"
                       onChange={this.handleChange_login}
                   />
                   <Form.Input
@@ -119,7 +119,7 @@ export default class Signin extends React.Component {
                   <Form.Button
                       fluid
                       style={{ color: 'white', backgroundColor: '#2A427A' }}
-                      disabled={!this.state.email || !this.state.password}
+                      disabled={!this.state.username || !this.state.password}
                       content="LOG IN"
                   />
                   New to LOHK?&ensp;
