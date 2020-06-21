@@ -11,7 +11,13 @@ class Signup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '', redirectToReferer: false };
+    this.state = {
+    email: '',
+    user: '',
+    password: '',
+    confirm: '',
+    error: '',
+    redirectToReferer: false };
   }
 
   /** Update the form controls each time the user interacts with them. */
@@ -21,12 +27,12 @@ class Signup extends React.Component {
 
   /** Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   submit = () => {
-    const { email, password, confirm } = this.state;
+    const { email, user, password, confirm } = this.state;
 
     if (!this.isValidPassword(password, confirm)) {
       return;
     }
-    Accounts.createUser({ email, username: email, password }, (err) => {
+    Accounts.createUser({ email, user, username: user, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -50,18 +56,18 @@ class Signup extends React.Component {
    */
   isValidPassword(password, confirm) {
     if (password !== confirm) {
-      this.setState({ error: 'Passwords do not match' });
+      this.setState({ error: ['Passwords do not match'], password: '', confirm: '' });
       return false;
     }
 
     const length = password.length;
 
     if (length < 8) {
-      this.setState({ error: 'Password is too short. Minimum is 8 characters.' });
+      this.setState({ error: ['Password is too short. Minimum is 8 characters.'], password: '', confirm: '' });
       return false;
     }
     if (length > 32) {
-      this.setState({ error: 'Passwords is too long. Maximum is 32 characters' });
+      this.setState({ error: ['Passwords is too long. Maximum is 32 characters'] });
       return false;
     }
 
@@ -91,7 +97,7 @@ class Signup extends React.Component {
     }
 
     if (hasInvalid) {
-      this.setState({ error: 'Password contains an invalid character.' });
+      this.setState({ error: ['Password contains an invalid character.'], password: '', confirm: '' });
       return false;
     }
 
@@ -99,21 +105,20 @@ class Signup extends React.Component {
       return true;
     }
 
-    let err_msg = '';
+    const err_msg = [];
     if (!hasSpecial) {
-      err_msg = err_msg.concat('PW needs a special character.\n');
+      err_msg.push('A special character. Examples: ! @ # % ^ & * ( )');
     }
     if (!hasUpperCase) {
-      err_msg = err_msg.concat('PW needs an upper case character.\n');
+      err_msg.push('An upper case character.');
     }
     if (!hasLowerCase) {
-      err_msg = err_msg.concat('PW needs a lower case character.\n');
+      err_msg.push('A lower case character.');
     }
     if (!hasNumeric) {
-      err_msg = err_msg.concat('PW needs a numeric character.\n');
+      err_msg.push('A numeric character. Examples: 1 2 3');
     }
-
-    this.setState({ error: err_msg });
+    this.setState({ error: err_msg, password: '', confirm: '' });
     return false;
   }
 
@@ -154,6 +159,17 @@ class Signup extends React.Component {
                     type="email"
                     placeholder="Email"
                     onChange={this.handleChange}
+                    required
+                />
+                <Form.Input
+                    label="Username"
+                    icon="id badge"
+                    iconPosition="left"
+                    name="user"
+                    type="name"
+                    placeholder="Username"
+                    onChange={this.handleChange}
+                    required
                 />
                 <Popup
                     header='Password Requirements:'
@@ -168,6 +184,7 @@ class Signup extends React.Component {
                         name="password"
                         placeholder="Password"
                         type="password"
+                        value={this.state.password}
                         onChange={this.handleChange}
                     />}
                 />
@@ -178,6 +195,7 @@ class Signup extends React.Component {
                     name="confirm"
                     placeholder="Confirm password"
                     type="password"
+                    value={this.state.confirm}
                     onChange={this.handleChange}
                 />
                 <Form.Button
@@ -191,11 +209,13 @@ class Signup extends React.Component {
               {this.state.error === '' ? (
                   ''
               ) : (
-                  <Message
-                      error
-                      header="Registration was not successful"
-                      content={this.state.error}
-                  />
+                  <Message error>
+                    <Message.Header>Registration was not successful</Message.Header>
+                    <p>
+                      Your password is missing one or more of the following parameters:
+                    </p>
+                    <Message.List items={this.state.error}/>
+                  </Message>
               )}
             </Grid.Column>
             <Grid.Column>
