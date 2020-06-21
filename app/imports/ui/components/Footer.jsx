@@ -8,7 +8,7 @@ class Footer extends React.Component {
     return (
         <Grid style={divStyle} stackable centered container>
           <Grid.Row>
-            <a href={'https://github.com/jcamarao/LOHK'}>
+            <a href={'https://github.com/LOHKER/LOHK'}>
               <Icon size={'big'} name={'github'}/>
             </a>
           </Grid.Row>

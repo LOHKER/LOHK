@@ -3,7 +3,7 @@ import { Container, Header, Image } from 'semantic-ui-react';
 import NavBar from '../components/NavBar';
 
 /** Render a Not Found page if the user enters a URL that doesn't match any route. */
-class Privacy extends React.Component {
+class Terms extends React.Component {
   render() {
     return (
         <div>
@@ -11,27 +11,28 @@ class Privacy extends React.Component {
           <Image centered size='tiny' src={'/images/LOHK-dark.png'}
                  style={{ paddingTop: '55px', paddingBottom: '40px' }}/>
           <Container style={{ paddingLeft: '20px', paddingRight: '20px', paddingBottom: '70px' }}>
-            <Header as="h1" textAlign="left">PRIVACY NOTICE</Header><br/>
-            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>Last updated: (June 15, 2020)</Header>
+            <Header as="h1" textAlign="left">TERMS OF SERVICE</Header><br/>
+            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>Last updated: (June 17, 2020)</Header>
             <p style={{ marginTop: '0px' }}>
-              This Privacy Notice describes how LOHKER Inc. (&quot;LOHKER&quot;), the company behind LOHK, handles
-              your Personal Data when you use our LOHK services (&quot;Services&quot;).<br/><br/>
-              By using our Services and/or registering for an account, you are accepting the terms of this Privacy
-              Notice and our&nbsp;<a href={'/#/terms'}>Terms of Service</a>
-              &nbsp;which are integrated here by reference.<br/><br/>
-              LOHKER is a global company. Although our physical servers are located in many different countries
-              around the world, LOHKER does not store Personal Data outside of the United States&apos; physical borders.
-              By using our services, you authorize LOHKER to use your information according to the Unites States&apos;
-              laws, regardless of which country you are located in.<br/><br/>
-              If you have any questions or comments about this Privacy Notice, please contact us at: LOHKER@gmail.com.
+              Thanks for using LOHK! These terms of service (the &quot;Agreement&quot;) cover your use of LOHK, a
+              service operated by LOHKER Inc. (&quot;LOHKER&quot;). Along with this Agreement, our&nbsp;
+              <a href={'/#/privacy'}>privacy notice</a>, explains how we use, protect and store any personal
+              information that you may provide to us while using LOHK.
             </p><br/>
-            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>1. PERSONAL DATA COLLECTION AND USE</Header>
+            <Header as="h2" textAlign="left" style={{ marginTop: '-10px' }}>Acceptance of Terms</Header>
             <p style={{ marginTop: '0px' }}>
-              As a provider of online privacy and security services, we ultimately strive to collect the minimal amount
-              of information required to operate our service. This often means difficult trade-offs between the
-              information we collect and the performance of our Service.<br/><br/>
-              We believe in an open dialogue because this Privacy Notice is an evolving document. We welcome your
-              thoughts and feedback on how we&apos;re doing.
+              By using the LOHK application, service, and website (collectively, the &quot;Services&quot;), you
+              agree and acknowledge that you have read, accept and are bound by this Agreement.
+            </p><br/>
+            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>
+              This Agreement applies to everyone who uses our Services and you cannot use our Services unless you accept
+              this Agreement.
+            </Header>
+            <p style={{ marginTop: '0px' }}>
+              We maintain the right to change the terms of this Agreement at any time. If changes are made, we will post
+              a link to the updated Agreement on RememBear.com. You are responsible for reviewing and becoming familiar
+              with any changes. Using our Services following notification of a change to this Agreement will confirm
+              that you&apos;ve accepted the updated Agreement.
             </p><br/>
             <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>1.1&ensp;WHAT IS PERSONAL DATA?</Header>
             <p style={{ marginTop: '0px' }}>
@@ -94,4 +95,4 @@ class Privacy extends React.Component {
   }
 }
 
-export default Privacy;
+export default Terms;

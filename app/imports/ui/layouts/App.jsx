@@ -18,6 +18,8 @@ import Signout from '../pages/Signout';
 import AdminPage from '../pages/AdminPage';
 import RemoveUser from '../pages/RemoveUser';
 import Delete from '../pages/Delete.jsx';
+import Privacy from '../pages/Privacy';
+import Terms from '../pages/Terms';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -31,6 +33,8 @@ class App extends React.Component {
               <Route path="/signup" component={Signup}/>
               <Route path="/delete" component={Delete}/>
               <Route path="/dash" component={Dashboard}/>
+              <Route path='/privacy' component={Privacy}/>
+              <Route path='/terms' component={Terms}/>
               <ProtectedRoute path="/add" component={AddInformation}/>
               <ProtectedRoute path="/edit/:_id" component={EditInformation}/>
               <AdminProtectedRoute path="/admin" component={AdminPage}/>
