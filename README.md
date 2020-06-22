@@ -74,3 +74,44 @@ The development team of LOHK has decided to move the repo to an organization now
   - New Completions: Email system with pin verification
   - Current: Email verification upon registration
   - Next: Further back-end development if needed
+  
+<h1><b>06/15/20 - 06/21/20 | Week Three of Development & Verification</b></h1>
+<b>Progress:</b>
+
+- Due to having most of the main requirements and security features completed during week two of development, this week was primarily focused on polishing up LOHK. The new changes that were done include the following:
+  - A new username feature to for users for displaying purposes and easier management
+  - Users are now have the capabilities of deleting their own account if they feel compromised or have the urge to do so
+  - Further front-end development for multiple pages 
+  
+<b>Pending:</b>
+  
+  - Similarly to week two, the primary focus of further development will be to implement more friendly, intuitive user interface to give users the best experience. This can be done so by:
+   - Making certain features stand out by having new placements or redesigns
+   - Add in more user settings to personalize the application towards them
+   - Display the information inputted by users in a neater fashion to ease presentation
+   
+<b>Roles and Responsibilities:</b>
+
+- Corben Broennimann: Front-end Development
+  - Completions: Basic dashboard completed
+  - Current: Further front-end development on all pages
+  - Next: Assist in cleaning up the UI and front-end if needed
+  
+- Jake Camarao: Back-end Development
+  - Completions: Admin features, Pin creation, User settings, Self-account deletion
+  - Current: Further develop in user settings
+  - Next: Further back-end development if needed
+  
+- Kyra Ikeda: Front-end Development
+  - Completions: Landing page, sign-in/sign-up page, about us, terms of service, privacy notice
+  - Current: Further front-end development on all pages
+  - Next: Cleaning up the site design
+
+- James Lau: Back-end Development
+  - Completions: Email system with pin verification, Sign-up requirements
+  - Current: Email verification upon registration
+  - Next: Further back-end development if needed
+   
+<b>Link:</b>
+
+To access the current repository that is being worked on, click [here](https://github.com/LOHKER/LOHK).
