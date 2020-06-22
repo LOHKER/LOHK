@@ -103,9 +103,9 @@ The development team of LOHK has decided to move the repo to an organization now
   - Next: Further back-end development if needed
   
 - Kyra Ikeda: Front-end Development
-  - Completions: Landing page, Sign-in/Sign-up page
+  - Completions: Landing page, sign-in/sign-up page, about us, terms of service, privacy notice
   - Current: Further front-end development on all pages
-  - Next: Other pages (About us, terms of service, privacy notice)
+  - Next: Cleaning up the site design
 
 - James Lau: Back-end Development
   - Completions: Email system with pin verification, Sign-up requirements
