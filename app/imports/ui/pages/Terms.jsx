@@ -30,64 +30,79 @@ class Terms extends React.Component {
             </Header>
             <p style={{ marginTop: '0px' }}>
               We maintain the right to change the terms of this Agreement at any time. If changes are made, we will post
-              a link to the updated Agreement on RememBear.com. You are responsible for reviewing and becoming familiar
+              a link to the updated Agreement on LOHK.com. You are responsible for reviewing and becoming familiar
               with any changes. Using our Services following notification of a change to this Agreement will confirm
               that you&apos;ve accepted the updated Agreement.
             </p><br/>
-            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>1.1&ensp;WHAT IS PERSONAL DATA?</Header>
+            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>YOUR RESPONSIBILITIES</Header><br/>
+            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>Your LOHK</Header>
             <p style={{ marginTop: '0px' }}>
-              &quot;Personal Data&quot; means any information relating to an identified or identifiable natural person
-              (&quot;Individual&quot;) and includes information about you that you provide while using our Services.
-              If we use or store Personal Data with information that is non-personal, we will consider the combination
-              as Personal Data.<br/><br/>
-              The Personal Data we collect includes your Account Data, certain credit card or payment information and,
-              in some circumstances may include Operational Data, as described below. We may also collect Personal Data
-              you provide to us if you communicate with us, for example, to request support or information.<br/><br/>
-              We collect, use and disclose your Personal Data as necessary in order to provide you with the Services and
-              for the other purposes identified below.
+              When you use our Services, you will likely store important things in LOHK. These items may include
+              passwords, credit card numbers, notes and more (collectively, we call the items you store in LOHK
+              &quot;Your LOHK&quot;). The contents of Your LOHK is yours. You own the contents of Your LOHK, not
+              us. We have designed LOHK in such a way that we can&apos;t access the contents of Your LOHK. This
+              Agreement doesn&apos;t give us any rights to the contents of Your LOHK.<br/><br/>
+              As part of our Services, we offer the ability to sync Your LOHK and make it available across the
+              computers, tablets or mobile devices that you approve. To do this, we need, and you agree that we have,
+              your permission to store an encrypted version of Your LOHK on our servers. When Your LOHK is
+              transferred or stored on our network, it will always be encrypted so that you are the only one who can
+              access it.
             </p><br/>
-            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>1.2&ensp;YOUR LOHK DATA</Header>
+            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>Your Master Password</Header>
             <p>
-              LOHK was carefully engineered so that you and only you can access the information stored in
-              LOHK. All items, such as passwords, credit cards, notes and any other types of data, stored by you in
-              LOHK are end-to-end encrypted. No LOHK staff, including our support team and engineers, can view
-              or access the information you store in LOHK.<br/><br/>
-              Your encrypted LOHK data will be stored on our servers in Hawaii so that you can sync between
-              devices. Even though your data will be stored on our servers, it will only be accessible by you when you
-              unlock it with your Master Password.<br/><br/>
-              LOHKER does not own the data in your LOHK, this is your information and you can add to it, delete
-              it and modify it anytime you choose.
+              Your LOHK is secured by a master password (&quot;Master Password&quot;) that you select. Entering your
+              Master
+              Password is the only way for you or anyone else to access Your LOHK. You can change this password at
+              any time. You are responsible for keeping your Master Password a secret by storing your Master Password in
+              a secure location.<br/><br/>
+              As part of our Services, LOHKER will never be able to read or use your Master Password. We designed
+              our Services this way to ensure that you are the only one who is able to access Your LOHK. However,
+              this also means that we&apos;re unable to restore or change your Master Password if you forget it. If you
+              forget your Master Password and wish to continue using our Services, we can reset your account, but in
+              doing so the backup of Your LOHK on our servers will also be deleted.
             </p><br/>
-            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>1.3&ensp;DISCLOSURE OF PERSONAL INFORMATION
-              TO THIRD PARTIES</Header>
+            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>GRANT OF RIGHTS</Header>
             <p style={{ marginTop: '0px' }}>
-              Except as described below or as required or permitted by law, LOHKER will NOT disclose your Personal
-              Data to any other third parties under any circumstance.<br/><br/>
-              LOHKER may disclose your Personal Data to third party service providers (e.g., payment processors as
-              described above) to the extent necessary in order to provide you with the Services; in such case, we use
-              contractual or other means to ensure that there is a comparable level of protection for any Personal Data
-              that is processed for us by third parties.<br/><br/>
-              In the event LOHKER is served with a valid subpoena, warrant or other legal document and applicable
-              law requires LOHKER to comply, the extent of disclosure is limited to the Personal Data listed within
-              this Privacy Notice.<br/><br/>
-              As noted above, LOHKER utilizes PCI-compliant third-party payment processors to collect your credit
-              card and other billing information.<br/><br/>
-              If our organization structure changes (i.e., we undergo a restructuring or are acquired), we may need to
-              migrate your Personal Data to a third party related to a business transaction, but, we will ensure that
-              such a third party has entered into an agreement under which the use of your Personal Data is only related
-              to purposes necessary for the transaction.<br/><br/>
-              LOHKER does NOT store users originating IP addresses when connected to our Services and thus cannot
-              identify users when provided IP addresses. Additionally, we cannot disclose information about the
-              passwords, credit cards or other data our users store in their LOHK, as LOHKER does NOT have
-              access to this information.
+              So long as you agree to and comply with the terms of this Agreement, LOHKER gives you a limited,
+              nonexclusive, nontransferable, revocable right and license to (a) access and use the Services, and (b)
+              download, install and use the client software (the &quot;Software&quot;) solely to access the Services;
+              subject to the terms of this Agreement. LOHKER and/or third parties own all right, title and interest
+              in and to the Services and Software, including all intellectual property rights. All rights not granted
+              to you are reserved for LOHKER and its licensors.<br/><br/>
+              To the extent that any component of the Software may be offered under an open source license, we&apos;ll
+              make that license available to you and the provisions of that license may expressly override some of the
+              terms of this Agreement.<br/><br/>
+              You are responsible for ensuring that your use of the Services is in compliance with all applicable laws
+              and regulations. You agree not to sublicense, lease, rent, loan, transfer or distribute any portion of the
+              Services. You agree not to modify, adapt, translate or create derivative works from the Services. Unless
+              the following restrictions are prohibited by law, you agree not to reverse engineer or decompile the
+              Services, attempt to do so, or assist anyone in doing so.
             </p><br/>
-            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>1.4&ensp;CHANGES TO OUR
-              PRIVACY NOTICE</Header>
+            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>TRADEMARKS</Header>
             <p style={{ marginTop: '0px' }}>
-              We may need to change our Privacy Notice from time-to-time and all updates will be posted online at
-              LOHK.com. Your continued use of our Services after the effective date of such changes constitutes
-              your acceptance of such changes. We will post an effective date at the top of the page for your
-              convenience. We welcome your thoughts and feedback.
+              These Services are protected by trademark, copyright and other American and foreign laws. Please respect
+              our LOHK and our rights. To that end, you agree not to remove, obscure, or alter any trademark, copyright
+              or other proprietary rights notices displayed in the Services, Software or on the LOHK website.
+            </p><br/>
+            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>THE SERVICES</Header>
+            <p style={{ marginTop: '0px' }}>
+              LOHKER is providing the Services on an &quot;as is, as available&quot; basis, without representation or
+              warranty of any kind to the fullest extent permitted by law. LOHKER does not guarantee the continuous
+              availability of the Services or of any specific feature(s) of the Services.<br/><br/>
+              LOHKER may modify the Services or any feature of the Services, impose usage or service limits, suspend
+              Services or any feature of the Services permanently or temporarily, or block certain kinds of usage, at
+              our sole discretion. We will inform you of any significant changes to the Services we may make. We may
+              notify you of such changes by sending you an e-mail or by posting relevant information on the LOHK
+              website.
+            </p><br/>
+            <Header as="h4" textAlign="left" style={{ marginTop: '-10px' }}>TERMINATION</Header>
+            <p style={{ marginTop: '0px' }}>
+              You are free to stop using the Services at any time. You also agree that we can suspend or end your access
+              to the Services at any time. For example, we may suspend or end your access to the Services if we find you
+              to not be complying with the terms of this Agreement. In any case where we suspend or end your access, we
+              will try to contact you by email to notify you of the details.<br/><br/>
+              If you&apos;d like to have the contents of Your LOHK deleted from our servers, please contact the
+              LOHK support team who can help you delete Your LOHK.
             </p>
           </Container>
         </div>
