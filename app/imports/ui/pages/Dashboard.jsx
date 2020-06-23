@@ -127,7 +127,7 @@ class Dashboard extends React.Component {
                 Add Account
               </Menu.Item>
               <Menu.Item>
-              User Controls
+              USER CONTROLS
               </Menu.Item>
               <Menu.Item>
               <Modal

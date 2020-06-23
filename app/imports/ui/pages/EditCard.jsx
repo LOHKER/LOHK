@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
+import { Grid, Loader, Header, Segment, Card } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
@@ -32,9 +32,9 @@ class EditCard extends React.Component {
             <Header as="h2" textAlign="center">Edit Information</Header>
             <AutoForm schema={CardSchema} onSubmit={data => this.submit(data)} model={this.props.doc}>
               <Segment>
-                <TextField name='Card Number'/>
-                <TextField name='Security Pin'/>
-                <TextField name='Expiration Date'/>
+                <TextField name='number'/>
+                <TextField name='pin'/>
+                <TextField name='expire'/>
                 <TextField name='notes'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
