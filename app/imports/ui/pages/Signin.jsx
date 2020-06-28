@@ -65,7 +65,7 @@ export default class Signin extends React.Component {
 
         const service_id = 'default_service';
         const template_id = 'template_Z888wQ4B';
-        const sendEmail = false;
+        const sendEmail = true;
         if (sendEmail) {
           // eslint-disable-next-line no-undef
           emailjs.send(service_id, template_id, template_params);
