@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { Form, Grid, Header, Message, Popup, Image } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
+import NavBar from '../components/NavBar';
 
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -142,6 +143,8 @@ class Signup extends React.Component {
         </ul>;
 
     return (
+      <div>
+      <NavBar/>
         <div style={{ paddingTop: '40px', paddingBottom: '80px' }}>
           <Image style={{ width: '100px' }} centered src={'/images/LOHK-dark.png'}/>
           <Header as="h2" textAlign="center">
@@ -222,6 +225,7 @@ class Signup extends React.Component {
               <Image centered src={'/images/laptop.png'}/>
             </Grid.Column>
           </Grid>
+        </div>
         </div>
     );
   }
