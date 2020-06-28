@@ -115,3 +115,54 @@ The development team of LOHK has decided to move the repo to an organization now
 <b>Link:</b>
 
 To access the current repository that is being worked on, click [here](https://github.com/LOHKER/LOHK).
+
+<h1><b>06/22/20 - 06/28/20 | Week Four of Development & Release</b></h1>
+<b>Final Responsibilities:</b>
+
+- Corben Broennimann: Finalizing front-end
+ 
+- Jake Camarao: Finalizing back-end
+  
+- Kyra Ikeda: Finalizing front-end
+
+- James Lau: Finalizing back-end
+
+<b>How to Install and Run the Program</b>
+
+1) Download the current release version
+2) Download [Meteor](https://www.meteor.com/)
+3) cd into the app folder in the file
+4) ```npm install```
+5) ```meteor npm npm start```
+6) Open your browser to http://localhost:3000
+
+<b>Developer Notes</b>
+
+The development process of this project went through many roadblocks to get where it is today. The development team of LOHK feels as though the project reached a state where it is something to be proud of. However, there are some loose ends that we wish we could have cleaned up to further solidfy the application to become something better.
+
+The Challenges:
+- Setting up dual authentication 
+- Having a cohesive application design
+
+The Surprises:
+- 
+
+The Proud Moments:
+- Dual authentication set up with an email sending a pin
+
+The Disappointments:
+- Further development of front-end could have been done
+- Further implementation of features could have been done
+  - Ex. Email Verification upon registration
+
+Disclaimers: 
+- There are still many things about LOHK that can be improved:
+  - The front end design
+  - LOHK is still very barebones in terms of features
+
+<b>Links:</b>
+
+- The main repository can be found [here](https://github.com/LOHKER/LOHK)
+- The final project documentation can be found [here](https://github.com/LOHKER/LOHK/blob/master/README.md)
+- The final release version of LOHK can be found [here]()
+- The wiki page for LOHK can be accessed [here](https://lohker.github.io/LOHK.github.io/)
