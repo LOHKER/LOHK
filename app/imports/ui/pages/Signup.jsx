@@ -67,7 +67,7 @@ class Signup extends React.Component {
       return false;
     }
     if (length > 32) {
-      this.setState({ error: ['Passwords is too long. Maximum is 32 characters'] });
+      this.setState({ error: ['Passwords is too long. Maximum is 32 characters'], password: '', confirm: '' });
       return false;
     }
 
