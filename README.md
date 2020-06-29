@@ -165,5 +165,5 @@ Disclaimers:
 
 - The main repository can be found [here](https://github.com/LOHKER/LOHK)
 - The final project documentation can be found [here](https://github.com/LOHKER/LOHK/blob/master/README.md)
-- The final release version of LOHK can be found [here]()
+- The final release version of LOHK can be found [here](https://github.com/LOHKER/LOHK/releases/tag/v1.0)
 - The wiki page for LOHK can be accessed [here](https://lohker.github.io/LOHK.github.io/)
