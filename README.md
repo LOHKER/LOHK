@@ -131,10 +131,10 @@ To access the current repository that is being worked on, click [here](https://g
 
 1) Download the current release version
 2) Download [Meteor](https://www.meteor.com/)
-3) cd into the app folder in the file
-4) ```npm install```
-5) ```meteor npm npm start```
-6) Open your browser to http://localhost:3000
+3) cd into the app folder in the file via the terminal or command prompt
+4) Type: ```npm install``` to install the packages that allow LOHK to run properly
+5) Type: ```meteor npm npm start``` to begin running LOHK 
+6) Open your browser to http://localhost:3000 and begin usage!
 
 <b>Developer Notes</b>
 
@@ -145,7 +145,8 @@ The Challenges:
 - Having a cohesive application design
 
 The Surprises:
-- 
+- How intensive it can be to successfully implement a secure sign-in/sign-up system
+- How some intuitive features can be non-intuitive to design and implement regarding front-end
 
 The Proud Moments:
 - Dual authentication set up with an email sending a pin
